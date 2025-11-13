@@ -41,11 +41,13 @@ class UserController extends Controller
         // Get validated data from the request
         $validatedData = $request->validated();
 
-        User::create([
+        $newuser = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password']), // <-- ALWAYS hash passwords
         ]);
+
+        $newuser->assignRole($request['role']);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
@@ -55,6 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->load('roles');
         return view('users.show', compact('user'));
     }
 
@@ -62,8 +65,13 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
-    {
-        return view('users.edit', compact('user'));
+    {   
+        $roles = Role::pluck('name', 'id');
+        $user->load('roles');
+        foreach($user->roles as $role):                    
+            $user->role_id =  $role->id;
+        endforeach;
+        return view('users.edit', compact('user','roles'));
     }
 
     /**
@@ -71,18 +79,14 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        
+        
         // Validation already passed!
         $validatedData = $request->validated();
 
-        // Conditionally update password if a new one was provided
-        if (!empty($validatedData['password'])) {
-            $validatedData['password'] = Hash::make($validatedData['password']);
-        } else {
-            // Remove password from array if it's empty, so it doesn't overwrite existing
-            unset($validatedData['password']);
-        }
-
         $user->update($validatedData);
+        $user->syncRoles([]);
+        $user->assignRole($request['role']);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }

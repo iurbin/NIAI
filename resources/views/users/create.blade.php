@@ -60,7 +60,7 @@
                             >
                             <option value="">Select a Role</option>
                             @foreach ($roles as $id => $name)
-                                <option value="{{ $id }}">{{ $name }}</option>
+                                <option value="{{ $name }}">{{ $name }}</option>
                             @endforeach
                         </select>
                             

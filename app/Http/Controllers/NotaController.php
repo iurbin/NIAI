@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nota;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +26,8 @@ class NotaController extends Controller
      */
     public function create()
     {
-        //
+        $countries = DB::table('countries')->get();
+        return view('notas.create', compact('countries'));
     }
 
     /**

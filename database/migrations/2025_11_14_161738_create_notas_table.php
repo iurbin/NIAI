@@ -19,17 +19,26 @@ return new class extends Migration
             $table->string('extract');
             $table->foreignId('city_id');
             $table->foreignId('country_id');
+            $table->foreignId('state_id');
             $table->timestamps();
         });
 
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('title');
-            $table->foreignId('country_id');
-        });
+        
+        
         Schema::create('countries', function (Blueprint $table) {
             $table->id('id');
-            $table->string('title');
+            $table->string('name');
+            $table->string('continent');
+        });
+        Schema::create('states', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
+            $table->foreignId('country_id');
+        });
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
+            $table->foreignId('state_id');
         });
 
         

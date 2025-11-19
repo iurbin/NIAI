@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -92,44 +93,17 @@
                                 </div>
                             @enderror
                         </div>
-                        {{-- 3. Country Field --}}
-                        <div class="mb-3">
-                            <label for="country" class="form-label"><strong>País</strong></label>
-                            <select
-                                class="form-control"
-                                id="country"
-                                name="country"
-                                required
-                            >
-                            <option value="">Seleccionar país</option>
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->title }}</option>
-                            @endforeach
-                        </select>
-                        </div>
-                        {{-- 3. State Field --}}
-                        <div class="mb-3">
-                            <label for="country" class="form-label"><strong>Estado</strong></label>
-                            <select
-                                class="form-control"
-                                id="country"
-                                name="country"
-                                required
-                            >
-                            <option value="">Select a Estado/Departamento</option>
-                            
-                        </select>
-                        </div>
                         {{-- 3. City Field --}}
                         <div class="mb-3">
                             <label for="ciudad" class="form-label"><strong>Ciudad</strong></label>
-                            <select
-                                class="form-control"
+                            <input
+                                type="text"
+                                class="form-control @error('ciudad') is-invalid @enderror"
                                 id="ciudad"
                                 name="ciudad"
+                                value="{{ old('cciudadover') }}"
                                 required
                             >
-                                <option value="">Seleccionar ciudad</option>
                             
                             </select>
                             
@@ -147,4 +121,6 @@
     </div>
 </div>
 <script src="{{ asset('build/assets/get_link.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClKduTLf-pTa7JDjp0BmiGBaRyjyLydBw&libraries=places&callback=initAutocomplete"></script>
+
 @endsection

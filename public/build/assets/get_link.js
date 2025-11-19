@@ -86,4 +86,28 @@ document.addEventListener('DOMContentLoaded', () => {
         } */
         
     }
+
+
+
+    
 });
+
+function initAutocomplete() {
+  const cityInput = document.getElementById('ciudad'); // Replace 'ciudad-input' with the actual ID of your input field.
+
+  const options = {
+    // This is the array that restricts results to cities (localities/administrative_area_level_3)
+    types: ['(cities)'], 
+    // You can optionally restrict results to specific countries (e.g., to only show US and Canada cities)
+    // componentRestrictions: { country: ["us", "ca"] },
+  };
+
+  const autocomplete = new google.maps.places.Autocomplete(cityInput, options);
+
+  // Optional: Add a listener to get the selected city's full details
+  autocomplete.addListener('place_changed', function() {
+    const place = autocomplete.getPlace();
+    // You can now access full place data, like the city name: place.name
+    console.log('Selected City:', place.name);
+  });
+}

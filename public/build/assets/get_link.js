@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initAutocomplete() {
-  const cityInput = document.getElementById('ciudad'); // Replace 'ciudad-input' with the actual ID of your input field.
+  const cityInput = document.getElementById('location'); // Replace 'ciudad-input' with the actual ID of your input field.
 
   const options = {
     // This is the array that restricts results to cities (localities/administrative_area_level_3)

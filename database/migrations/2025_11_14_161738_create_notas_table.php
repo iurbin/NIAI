@@ -17,15 +17,16 @@ return new class extends Migration
             $table->string('link');
             $table->string('cover');
             $table->string('extract');
-            $table->foreignId('city_id');
+            $table->string('location');
+            /* $table->foreignId('city_id');
             $table->foreignId('country_id');
-            $table->foreignId('state_id');
+            $table->foreignId('state_id'); */
             $table->timestamps();
         });
 
         
         
-        Schema::create('countries', function (Blueprint $table) {
+        /* Schema::create('countries', function (Blueprint $table) {
             $table->id('id');
             $table->string('name');
             $table->string('continent');
@@ -39,7 +40,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('name');
             $table->foreignId('state_id');
-        });
+        }); */
 
         
     }

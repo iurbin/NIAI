@@ -6,8 +6,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <h2>Agregar nueva nota</h2>
+                <div class="p-3">
+                    <h2>Agregar nueva publicación</h2>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('notas.store') }}">
@@ -21,7 +21,7 @@
                                 type="text"
                                 class="form-control @error('link') is-invalid @enderror"
                                 id="link"
-                                link="link"
+                                name="link"
                                 value="{{ old('link') }}"
                                 placeholder="Enter a URL (e.g., https://...)"
                                 required
@@ -95,13 +95,13 @@
                         </div>
                         {{-- 3. City Field --}}
                         <div class="mb-3">
-                            <label for="ciudad" class="form-label"><strong>Ciudad</strong></label>
+                            <label for="location" class="form-label"><strong>Ciudad</strong></label>
                             <input
                                 type="text"
-                                class="form-control @error('ciudad') is-invalid @enderror"
-                                id="ciudad"
-                                name="ciudad"
-                                value="{{ old('cciudadover') }}"
+                                class="form-control @error('location') is-invalid @enderror"
+                                id="location"
+                                name="location"
+                                value="{{ old('location') }}"
                                 required
                             >
                             

@@ -35,7 +35,7 @@
                             <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('notas.index') }}">Notas</a>
+                            <a class="nav-link" href="{{ route('notas.index') }}">Publicaciones</a>
                         </li>
                     </ul>
 

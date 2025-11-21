@@ -26,8 +26,7 @@ class NotaController extends Controller
      */
     public function create()
     {
-        $countries = DB::table('countries')->get();
-        return view('notas.create', compact('countries'));
+        return view('notas.create');
     }
 
     /**
@@ -35,7 +34,21 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'link' => 'required',
+            'title' => 'required',
+            'cover' => 'required',
+            'extract' => 'required',
+            'location' => 'required'    
+        ]);
+
+        // 2. Create a new instance of the model and fill it with validated data
+        $post = Nota::create($validatedData);
+
+        
+        // 4. Redirect the user or return a response
+        return redirect()->route('notas.index', $post->id)
+                         ->with('success', 'Publicación creada exitosamente!');
     }
 
     /**
@@ -52,6 +65,7 @@ class NotaController extends Controller
     public function edit(Nota $nota)
     {
         //
+        return view('notas.edit',compact('nota'));
     }
 
     /**
@@ -59,7 +73,20 @@ class NotaController extends Controller
      */
     public function update(Request $request, Nota $nota)
     {
-        //
+        $validatedData = $request->validate([
+            'link' => 'required',
+            'title' => 'required',
+            'cover' => 'required',
+            'extract' => 'required',
+            'location' => 'required'    
+        ]);
+        // 2. Create a new instance of the model and fill it with validated data
+        $nota->update($validatedData);
+
+        
+        // 4. Redirect the user or return a response
+        return redirect()->route('notas.index', $nota)
+                         ->with('success', 'Publicación actualizada exitosamente!');
     }
 
     /**
@@ -67,6 +94,8 @@ class NotaController extends Controller
      */
     public function destroy(Nota $nota)
     {
-        //
+        $nota->delete();
+
+        return redirect()->route('notas.index')->with('success', 'Publicacion eliminada correctamente');
     }
 }

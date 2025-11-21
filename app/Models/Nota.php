@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nota extends Model
 {
     //
+    protected $fillable = [
+        'link', 'title', 'cover', 'extract', 'location'
+    ];
 }

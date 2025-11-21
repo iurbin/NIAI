@@ -7,7 +7,7 @@
         <div class="col-md-12">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2>Notas</h2>
+                <h2>Publicaciones</h2>
                 <a href="{{ route('notas.create') }}" class="btn btn-primary">
                     Agregar nueva
                 </a>
@@ -22,7 +22,6 @@
                                 <tr>
                                     <th scope="col">#ID</th>
                                     <th scope="col">Titulo</th>
-                                    <th scope="col">Enlace</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -32,10 +31,10 @@
                                     <tr>
                                         <th scope="row">{{ $nota->id }}</th>
                                         <td>{{ $nota->title }}</td>
-                                        <td>{{ $nota->link }}</td>
+                                        
                                         <td>
                                             {{-- Action Buttons --}}
-                                            <a href="{{ route('notas.show', $nota) }}" class="btn btn-info btn-sm">View</a>
+                                            <a href="{{ $nota->link }}" target="_blank" class="btn btn-info btn-sm">View</a>
                                             <a href="{{ route('notas.edit', $nota) }}" class="btn btn-warning btn-sm">Edit</a>
                                             
                                             {{-- Delete Button (needs a form) --}}
@@ -50,7 +49,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="5" class="text-center">
-                                            No se encontraron notas.
+                                            No se encontraron Publicaciones.
                                         </td>
                                     </tr>
                                 @endforelse

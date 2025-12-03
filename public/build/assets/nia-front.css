@@ -1,3 +1,96 @@
 body {
   background-image: radial-gradient(circle,#070d38, #000001);
 }
+/* Custom styles to match the PDF menu */
+:root {
+    --dark-menu-bg: #101030; /* Deep indigo/dark blue */
+    --light-text-color: #ffffff;
+    --border-color: #3f51b5; /* A bright blue line for dividers */
+    --search-bg: #1c1c4e; /* Slightly lighter background for the search box */
+}
+
+/* 1. Offcanvas Container (Sidebar) */
+#sidebarMenu.offcanvas {
+    /* Set the dark background color */
+    background-color: var(--dark-menu-bg);
+    /* Apply rounded corners to the visible side */
+    border-radius: 1.5rem 0 0 1.5rem; /* Adjust corners as needed, top-right/bottom-right are 0 */
+    /* Remove default shadow if any */
+    box-shadow: none; 
+    /* Make it slightly smaller than the default width (optional) */
+    width: 250px; 
+}
+
+/* 2. Header (Dashboard Title) */
+#sidebarMenu .offcanvas-header {
+    /* Set text color to light */
+    color: var(--light-text-color);
+    /* Remove the default border at the bottom */
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+/* Sub-title 'Welcome!' style (assuming you add a span/p element) */
+#sidebarMenu .offcanvas-header p {
+    color: #bdbdbd; /* Lighter gray for secondary text */
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+/* 3. Close Button */
+#sidebarMenu .btn-close {
+    /* Change the close button icon to white */
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 1; /* Ensure it is fully visible */
+}
+
+/* 4. Menu Body */
+#sidebarMenu .offcanvas-body {
+    padding: 0 1.5rem 1.5rem 1.5rem; /* Padding adjustment */
+}
+
+/* 5. Search Bar (Q Menú) */
+.custom-search-menu {
+    background-color: var(--search-bg);
+    border: none;
+    color: var(--light-text-color);
+    border-radius: 0.5rem; /* Rounded corners */
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    display: flex; /* To align the icon and input */
+    align-items: center;
+}
+
+.custom-search-menu input {
+    background: transparent;
+    border: none;
+    color: var(--light-text-color);
+    padding-left: 0.5rem;
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.custom-search-menu input::placeholder {
+    color: #bdbdbd;
+    opacity: 1;
+}
+
+.custom-search-menu input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* 6. Navigation Links */
+#sidebarMenu .nav-link {
+    color: var(--light-text-color);
+    padding: 0.5rem 0; /* Vertical padding */
+    border-bottom: 1px solid var(--border-color); /* The signature dividing line */
+    margin-bottom: 0.5rem; /* Space below the line */
+    opacity: 0.8;
+}
+
+#sidebarMenu .nav-link:hover,
+#sidebarMenu .nav-link.active {
+    opacity: 1;
+    font-weight: bold;
+}

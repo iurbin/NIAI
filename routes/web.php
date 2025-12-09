@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotaController;
+use App\Http\Controllers\ImageController;
 
 Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function () {
@@ -15,4 +16,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', function () {
             return view('welcome');
         })->middleware('auth');
+
+        Route::post('/upload-image', [ImageController::class, 'store'])->name('image.store');
 });

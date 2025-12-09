@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             // Handle network errors
             console.error('Fetch error:', error);
-            showError('Failed to fetch preview.');
+            showError('Error al cargar los datos de la nota, favor ingresar datos manualmente.');
         }
     });
 
     function showLoading() {
         
         statusBox.className = 'loading'; // Use class for styling
-        statusBox.innerHTML = 'Loading...';
+        statusBox.innerHTML = 'Cargando...';
         
     }
 

@@ -75,7 +75,9 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#image-upload">
+                            Cargar cover
+                            </button>
                         </div>
                         <div class="mb-3">
                             <label for="extract" class="form-label"><strong>Contenido, descripción breve</strong></label>
@@ -119,6 +121,52 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="image-upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cargar cover</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="max-w-md mx-auto bg-white">
+
+        <div id="output" class="d-none text-center"></div>
+
+        <div id="image-preview" class="d-none w-100 text-center">
+            <img src="" id="uploaded-image" class="w-100 rounded border">
+            <a class="btn btn-success my-2" data-bs-dismiss="modal">Usar en la nota...</a>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label class="block mb-2 font-bold">Seleccionar imagen:</label><br>
+                <input type="file" name="image" id="imageInput" class="block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100
+                "/>
+                <p id="error-text" class="text-red-500 text-sm mt-2 d-none"></p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary">
+                    Cargar
+                </button>
+            </div>
+        </form>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" id="image_upload_url" value="{{route('image.store')}}">
+<script src="{{ asset('build/assets/image-upload.js') }}"></script>
+
+
 <script src="{{ asset('build/assets/get_link.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClKduTLf-pTa7JDjp0BmiGBaRyjyLydBw&libraries=places&callback=initAutocomplete"></script>
 

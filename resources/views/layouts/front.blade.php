@@ -16,7 +16,7 @@
     <link href="{{asset('build/assets/nia-front.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app-front.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">

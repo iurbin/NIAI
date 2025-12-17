@@ -13,7 +13,7 @@
                     <form method="POST" action="{{ route('notas.update', $nota) }}">
                         {{-- 1. CSRF Protection --}}
                         @csrf
-
+                        @method('PUT')
                         {{-- 2. Link Field --}}
                         <div class="mb-3">
                             <label for="link" class="form-label"><strong>Enlace</strong></label>
@@ -169,5 +169,11 @@
 
 <script src="{{ asset('build/assets/get_link.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClKduTLf-pTa7JDjp0BmiGBaRyjyLydBw&libraries=places&callback=initAutocomplete"></script>
-
+<script>
+var imageField = document.getElementById('cover');
+var coverPreview = document.getElementById('cover-preview');
+imageField.addEventListener('change',function(e){
+    coverPreview.style.backgroundImage = "url('"+imageField.value+"')";
+})
+</script>
 @endsection

@@ -1,24 +1,38 @@
 body {
-  background-image: radial-gradient(circle,#070d38, #000001);
+  background: #060b2e !important;
+  font-family: "Clash", sans-serif;
+  color: white;
 }
-/* Custom styles to match the PDF menu */
+.clash{
+    font-family: "Clash", sans-serif;
+}
+.clash-bold{
+    font-family: "ClashBold", sans-serif;
+}
 :root {
-    --dark-menu-bg: #101030; /* Deep indigo/dark blue */
+    --dark-menu-bg: #101030; 
     --light-text-color: #ffffff;
-    --border-color: #3f51b5; /* A bright blue line for dividers */
+    --border-color: #3f51b5; 
     --search-bg: #1c1c4e; /* Slightly lighter background for the search box */
 }
-
-/* 1. Offcanvas Container (Sidebar) */
+button.burger-button {
+    background: none;
+    color: white;
+    border: 0 none;
+    font-size: 2.5rem;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+}
 #sidebarMenu.offcanvas {
-    /* Set the dark background color */
     background-color: var(--dark-menu-bg);
-    /* Apply rounded corners to the visible side */
-    border-radius: 1.5rem 0 0 1.5rem; /* Adjust corners as needed, top-right/bottom-right are 0 */
-    /* Remove default shadow if any */
-    box-shadow: none; 
-    /* Make it slightly smaller than the default width (optional) */
-    width: 250px; 
+    border-radius: 0rem 0 0 1.5rem;
+    box-shadow: none;
+    width: 350px;
+    height: 61%;
+    border-left: 4px solid #0527ae;
+    border-bottom: 4px solid #0527ae;
 }
 
 /* 2. Header (Dashboard Title) */
@@ -93,4 +107,222 @@ body {
 #sidebarMenu .nav-link.active {
     opacity: 1;
     font-weight: bold;
+}
+.halo-light {
+    background: url('images/halo-light.svg') center no-repeat;
+    width: 100vw;
+    height: 45vh;
+    display: block;
+}
+.title-glow-container {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 180px;
+}
+.title-glow {
+    position: absolute;
+    background: url(images/glow.png) top center no-repeat;
+    background-size: 60%;
+    width: 100%;
+    z-index: -1;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+}
+.after-glow-item{
+    margin-top: -50px;
+}
+:root {
+    --primary-glow: #4d6dff;
+    --secondary-glow: #b94dff;
+    --bg-dark: #050505;
+    --card-bg: #121212;
+    --text-main: #ffffff;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Gradient Text */
+.text-gradient {
+    background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Sections */
+section {
+    padding: 10px 0;
+    min-height: 100vh;
+    display: flex;
+    border-bottom: 10px solid #5a28f3;
+    position: relative;
+}
+
+/* Neon Buttons */
+.btn-neon {
+    background: linear-gradient(90deg, #2b58de 0%, #6e42ef 100%);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 10px 30px;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(77, 109, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(77, 109, 255, 0.6);
+    color: white;
+}
+
+/* Glass Cards */
+.glass-card {
+    background: #2E6BE5;
+    background: linear-gradient(-20deg, rgba(46, 107, 229, 1) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(46, 107, 229, 1) 60%);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    padding: 5px;
+}
+.kpi-item:nth-child(2) .glass-card{   
+    background: #5c20ef;
+    background: linear-gradient(-20deg, rgb(100, 46, 248) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(100, 46, 248) 60%);
+}
+.kpi-item:nth-child(3) .glass-card{   
+    background: #0731e5;
+    background: linear-gradient(-20deg, rgba(7, 49, 229, 1) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(7, 49, 229, 1) 60%);
+}
+.glasscard-bg{
+    background: #2b3e3f;
+    border-radius: 50px;
+    padding: 20px 5px;
+    overflow: hidden;
+}
+.glasscard-bg.nota-item{
+    background-size: cover;
+    padding: 60px 20px;
+    position: relative;
+}
+.glasscard-bg.nota-item::before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: "";
+    background: rgba(0,0,0,0.5);
+    background: linear-gradient(0deg,rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.5) 50%);
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.glass-card-content{
+    position: relative;
+    z-index: 1;
+}
+.stat-value > .stat-small{
+    font-size: 1rem;
+    font-weight: normal;
+}
+/* Glow Effect Behind elements */
+.glow-bg {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0) 0%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+/* Map Placeholder */
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    border: 1px dashed #444;
+}
+
+/* News Card Specifics (Page 9 style) */
+.news-card-img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Stats */
+.stat-value {
+    font-size: 5.5rem;
+    font-weight: normal;
+    font-family: 'clash';
+    line-height: 85%;
+}
+.text-success-custom { color: #00ff9d; }
+.btn-clash-rounded {
+    border-radius: 25px !important;
+    font-family: 'Clash' !important;
+    font-weight: bold !important;
+}
+.info-card-icon{
+    width: 60px;
+    height: auto;
+}
+.kpi-tabs li{
+    margin-right: 10px;
+}   
+
+/* Change the default state */
+.btn-secondary {
+  background-color: #5c20ef !important; /* Your desired color */
+  border-color: #5c20ef !important;     /* Your desired border color */
+  color: #fff;               /* Text color for contrast */
+}
+
+/* Change the hover state */
+.btn-secondary:hover {
+  background-color: #31079c; /* Darker color on hover */
+  border-color: #31079c;
+}
+
+/* Change the active/focus state */
+.btn-secondary:active,
+.btn-secondary:focus {
+  background-color: #7141eb;
+  border-color: #7141eb;
+  box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.5); /* Custom focus ring */
+}
+.tab-pane {
+  transition: opacity 0.3s ease-in !important; /* Change '1.5s' to your desired duration and timing function */
+}
+.nia-table td, .nia-table th{
+    background: transparent !important;
+    font-family: "Clash", sans-serif;
+}
+.nia-table.table-hover tr:hover>td{
+    background: #7141eb !important;
+}
+.v-middle{
+    vertical-align: middle;
+}
+section{
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, 0.7) 100%);
 }

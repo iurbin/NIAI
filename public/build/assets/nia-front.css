@@ -326,3 +326,6 @@ section {
 section{
     background: radial-gradient(circle, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, 0.7) 100%);
 }
+.world-container{
+    margin-top: -200px;
+}

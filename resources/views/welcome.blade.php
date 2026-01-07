@@ -1,6 +1,14 @@
 @extends('layouts.front')
 
 @section('content')
+<!-- map items -->
+<link rel="stylesheet" href="{{asset('build/assets/map/map.css')}}" type="text/css">
+<script src="{{asset('build/assets/map/d3.v7.min.js')}}"></script>
+<script src="{{asset('build/assets/map/topojson-client.min.js')}}"></script>
+<!-- map items -->
+
+
+
 <link href="{{asset('build/assets/css/aos.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <section id="intro" class="text-center bg-gradient-dark">
@@ -10,6 +18,14 @@
                 <h2 class="clash text-white" data-aos="fade-up" data-aos-delay="400">Mapa General</h2>
                 <div class="title-glow" data-aos="fade" data-aos-delay="100"></div>
             </div>
+            <div class="world-container" data-aos="fade-up" data-aos-delay="800">
+                <div id="globe-container"></div>
+            </div>
+            <script>
+                const dataUrl = "{{asset('build/assets/map/countries-110m.json')}}";
+                patternBackground = "{{asset('build/assets/map/country-fill.png')}}";
+            </script>
+            <script src="{{asset('build/assets/map/map-main.js')}}"></script>
         </div>
         
     </section>

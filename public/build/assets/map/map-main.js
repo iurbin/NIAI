@@ -90,6 +90,9 @@
         // 7. CLICK INTERACTION (Zoom to Continent/Country)
         function clicked(event, d) {
             // Stop rotation
+            var selectedCountry = d.properties.name;
+            var selectedCountryID = d.id;
+            console.log(selectedCountryID);
             if (rotationTimer) rotationTimer.stop();
 
             // Calculate the centroid (center) of the clicked country

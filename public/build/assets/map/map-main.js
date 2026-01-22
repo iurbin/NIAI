@@ -1,9 +1,12 @@
 // 1. CONFIGURATION
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    container = document.getElementById('globe-container');
+    /* const width = window.innerWidth-700;
+    const height = window.innerHeight-150;
+     */
+    const width = container.offsetWidth;
+    const height = container.offsetHeight;
     const sensitivity = 75; // Controls drag speed
     let rotationTimer;
-    
     // 2. SETUP SVG
     const svg = d3.select("#globe-container")
         .append("svg")
@@ -12,7 +15,7 @@
 
     // 3. DEFINE PROJECTION (ORTHOGRAPHIC = SPHERE)
     const projection = d3.geoOrthographic()
-        .scale(250) 
+        .scale(300) 
         .center([0, 0])
         .rotate([0, -30]) // Initial rotation
         .translate([width / 2, height / 2]);

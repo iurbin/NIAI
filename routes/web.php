@@ -7,6 +7,10 @@ use App\Http\Controllers\NotaController;
 use App\Http\Controllers\ImageController;
 
 Auth::routes(['register' => false]);
+Route::get('/framed', function () {
+            return view('framed');
+        })->middleware('auth');
+
 Route::middleware(['auth'])->group(function () {
         Route::get('/manage', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         
@@ -15,7 +19,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/', function () {
             return view('welcome');
-        })->middleware('auth');
-
+        })->middleware('auth')->name('home');
         Route::post('/upload-image', [ImageController::class, 'store'])->name('image.store');
 });

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 Resizable Iframes Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Main Grid Container */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        /* The Wrapper for each Iframe (This is what resizes) */
+        .iframe-container {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            
+            /* Critical properties for resizing */
+            position: relative;
+            min-width: 200px;
+            min-height: 200px;
+            height: 350px; /* Initial Height */
+            overflow: hidden; /* Required for resize handle to show properly */
+            resize: both;     /* Allows vertical and horizontal resizing */
+            
+            /* Layout internals */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header bar just for looks */
+        .panel-header {
+            background-color: #e0e0e0;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 1px solid #bbb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        /* The Iframe itself */
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            flex-grow: 1; /* Fills the rest of the container space */
+        }
+
+        /* Custom visual cue for the resize handle */
+        .iframe-container::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, transparent 50%, #888 50%);
+            pointer-events: none; /* Let clicks pass through */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Dashboard: 6 Resizable Frames</h2>
+    <p style="text-align:center; color:#666;">Drag the bottom-right corner of any box to resize it.</p>
+
+    <div class="dashboard-grid">
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 01</div>
+            <iframe src="https://en.m.wikipedia.org/wiki/Main_Page"></iframe>
+        </div>
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 02</div>
+            <iframe src="https://example.com"></iframe>
+        </div>
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 03</div>
+            <iframe src="https://www.openstreetmap.org/export/embed.html"></iframe>
+        </div>
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 04</div>
+            <iframe src="https://en.m.wikipedia.org/wiki/Special:Random"></iframe>
+        </div>
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 05</div>
+            <iframe src="https://bing.com"></iframe>
+        </div>
+
+        <div class="iframe-container">
+            <div class="panel-header">Source 06</div>
+            <iframe src="https://en.m.wikipedia.org/wiki/Portal:Technology"></iframe>
+        </div>
+
+    </div>
+
+</body>
+</html>

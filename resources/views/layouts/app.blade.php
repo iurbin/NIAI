@@ -37,6 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('notas.index') }}">Publicaciones</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('forum.index') }}">Entradas Reddit</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

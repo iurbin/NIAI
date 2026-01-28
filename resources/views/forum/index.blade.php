@@ -6,16 +6,14 @@
     <div class="row">
         <div class="col-md-12">
 
-            {{-- 1. Page Header --}}
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2>Usuarios</h2>
-                {{-- Assumes you have a named route for creating users --}}
-                <a href="{{ route('users.create') }}" class="btn btn-primary">
-                    Agregar nuevo usuario
+                <h2>Foros de Reddit <i class="fab fa-reddit fa-2x text-white v-middle"></i></h2>
+                <a href="{{ route('notas.create') }}" class="btn btn-primary">
+                    Agregar nueva
                 </a>
             </div>
 
-            {{-- 2. Users Table --}}
+            {{-- 2. Forum Table --}}
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -23,39 +21,34 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">#ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Joined</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- Use @forelse to loop and handle empty state --}}
-                                @forelse ($users as $user)
+                                
+                                @forelse ($items as $item)
                                     <tr>
-                                        <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->created_at->format('M d, Y') }}</td>
+                                        <th scope="row">{{ $item->id }}</th>
+                                        <td>{{ $item->title }}</td>
+                                        
                                         <td>
                                             {{-- Action Buttons --}}
-                                            <a href="{{ route('users.show', $user) }}" class="btn btn-info btn-sm">Ver</a>
-                                            <a href="{{ route('users.edit', $user) }}" class="btn btn-warning btn-sm">Editar</a>
-                                            
+                                            <a href="{{ $item->link }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
+                                            <a href="{{ route('forum.edit', $item) }}" class="btn btn-warning btn-sm">Editar</a>
                                             {{-- Delete Button (needs a form) --}}
-                                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="d-inline"
-                                                  onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            <form action="{{ route('forum.destroy', $item) }}" method="POST" class="d-inline"
+                                                  onsubmit="return confirm('Esta segur@ de eliminar este item?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
-                                    {{-- This runs if $users is empty --}}
                                     <tr>
                                         <td colspan="5" class="text-center">
-                                            No users found.
+                                            No se encontraron Publicaciones.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -68,10 +61,13 @@
             {{-- 3. Pagination Links --}}
             <div class="d-flex justify-content-center mt-4">
                 {{-- This renders the pagination links and respects the Bootstrap setting from AppServiceProvider --}}
-                {!! $users->links() !!}
+                {!! $items->links() !!}
             </div>
 
         </div>
     </div>
 </div>
+
+
+
 @endsection

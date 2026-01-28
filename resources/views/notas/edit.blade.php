@@ -11,7 +11,6 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('notas.update', $nota) }}">
-                        {{-- 1. CSRF Protection --}}
                         @csrf
                         @method('PUT')
                         {{-- 2. Link Field --}}
@@ -121,7 +120,55 @@
         </div>
 
         <div class="col-md-4">
-            
+            <div class="card mb-3">
+                <form method="POST" action="{{ route('notas.update', $nota) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="card-body">
+                        <h5>Agregar estadisticas a la nota</h5>
+                        <div class="form-block mb-3">
+                            <label for="">Titulo</label>
+                            <input type="text" class="form-control" name="stat_title">
+                        </div>
+                        <div class="form-block mb-3">
+                            <label for="">Valor</label>
+                            <input type="number" class="form-control" name="stat_value">
+                        </div>
+                        <div class="form-block mb-3">
+                            <label for="">Comparativa</label>
+                            <input type="number" class="form-control" name="stat_comparative">
+                        </div>
+                        <div class="form-block mb-3">
+                            <button type="submit" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <ul class="list-group table-stripped">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h5 class="mt-2">Visitas</h5>
+                            <p>Valor: 30<br>
+                            Comparativa: 10%</p>
+                        </div>
+                        <div class="text-right ">
+                            <a href="javascript:void(0)" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <div>
+                            <h5 class="mt-2">Alcance</h5>
+                            <p>Valor: 25<br>
+                            Comparativa: 15%</p>
+                        </div>
+                        <div class="text-right ">
+                            <a href="javascript:void(0)" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -172,6 +219,7 @@
 
 
 <script src="{{ asset('build/assets/get_link.js') }}"></script>
+<script src="{{ asset('build/assets/edit-nota.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClKduTLf-pTa7JDjp0BmiGBaRyjyLydBw&libraries=places&callback=initAutocomplete"></script>
 <script>
 var imageField = document.getElementById('cover');

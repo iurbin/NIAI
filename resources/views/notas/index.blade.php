@@ -34,15 +34,14 @@
                                         
                                         <td>
                                             {{-- Action Buttons --}}
-                                            <a href="{{ $nota->link }}" target="_blank" class="btn btn-info btn-sm">View</a>
-                                            <a href="javascript:void(0)" data-target="#add-stat" data-toggle="modal" class="btn btn-warning btn-sm">Agregar datos</a>
-                                            <a href="{{ route('notas.edit', $nota) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{{ $nota->link }}" target="_blank" class="btn btn-info btn-sm">Ver</a>
+                                            <a href="{{ route('notas.edit', $nota) }}" class="btn btn-warning btn-sm">Editar</a>
                                             {{-- Delete Button (needs a form) --}}
                                             <form action="{{ route('notas.destroy', $nota) }}" method="POST" class="d-inline"
                                                   onsubmit="return confirm('Esta segur@ de eliminar esta nota?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nota;
+use App\Models\Stat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -82,9 +83,28 @@ class NotaController extends Controller
         ]);
         // 2. Create a new instance of the model and fill it with validated data
         $nota->update($validatedData);
+        $stat_id = $request['stat_id'];
+        $stat_title = $request['stat_title'];
+        $stat_value = $request['stat_value'];
+        $stat_comparative = $request['stat_comparative'];
+        $i = 0;
+        foreach ($stat_title as $stat) {
+            if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
+                $stat = new Stat([
+                    'label' => $stat,
+                    'value' => $stat_value[$i],
+                    'increase' => $stat_comparative[$i],
+                    'item_type' => 'nota_data',
+                ]);
 
+                $nota->stats()->save($stat);
+            endif;
+            $i++;
+
+
+            
+        }
         
-        // 4. Redirect the user or return a response
         return redirect()->route('notas.index', $nota)
                          ->with('success', 'Publicación actualizada exitosamente!');
     }

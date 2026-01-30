@@ -13,9 +13,11 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="{{asset('build/assets/nia-back.css')}}" rel="stylesheet">
-
+    <script src="{{ asset('build/assets/js/jquery3.7.min.js') }}"></script>    
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 <body>
     <div id="app">

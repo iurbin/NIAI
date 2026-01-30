@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
+<form method="POST" action="{{ route('notas.update', $nota) }}">
+@csrf
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="p-3">
-                    <h2>Agregar nueva publicación</h2>
+                    <h2>Editar publicación</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('notas.update', $nota) }}">
-                        @csrf
+                    
                         @method('PUT')
                         {{-- 2. Link Field --}}
                         <div class="mb-3">
@@ -114,64 +114,63 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Guardar Nota</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card mb-3">
-                <form method="POST" action="{{ route('notas.update', $nota) }}">
-                    @csrf
-                    @method('PUT')
+                
                     <div class="card-body">
                         <h5>Agregar estadisticas a la nota</h5>
                         <div class="form-block mb-3">
                             <label for="">Titulo</label>
-                            <input type="text" class="form-control" name="stat_title">
+                            <input type="text" class="form-control" name="stat_title" id="stat_title">
                         </div>
                         <div class="form-block mb-3">
                             <label for="">Valor</label>
-                            <input type="number" class="form-control" name="stat_value">
+                            <input type="number" class="form-control" name="stat_value" id="stat_value">
                         </div>
                         <div class="form-block mb-3">
-                            <label for="">Comparativa</label>
-                            <input type="number" class="form-control" name="stat_comparative">
+                            <label for="">Comparativa (%)</label>
+                            <input type="number" class="form-control" name="stat_comparative" id="stat_comparative">
                         </div>
                         <div class="form-block mb-3">
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <a href="javascript:void(0)" id="btn-add-stat" class="btn btn-primary">Agregar</a>
                         </div>
                     </div>
-                </form>
+                
             </div>
 
             <div class="card">
-                <ul class="list-group table-stripped">
+                @php
+                $stats = $nota->stats;
+                
+                @endphp
+                <ul id="estadisticas-container" class="list-group table-stripped">
+                    @foreach($stats as $stat)
                     <li class="list-group-item d-flex justify-content-between">
                         <div>
-                            <h5 class="mt-2">Visitas</h5>
-                            <p>Valor: 30<br>
-                            Comparativa: 10%</p>
+                            <h5 class="mt-2">{{ $stat->label }}</h5>
+                            <p>Valor: {{ $stat->value }}<br>
+                            Comparativa: {{ $stat->increase }}</p>
                         </div>
                         <div class="text-right ">
                             <a href="javascript:void(0)" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
                         </div>
+                        <input type="hidden" name="stat_id[]" value="{{ $stat->id }}">
+                        <input type="hidden" name="stat_title[]" value="{{ $stat->label }}">
+                        <input type="hidden" name="stat_value[]" value="{{ $stat->value }}">
+                        <input type="hidden" name="stat_comparative[]" value="{{ $stat->increase }}">
                     </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h5 class="mt-2">Alcance</h5>
-                            <p>Valor: 25<br>
-                            Comparativa: 15%</p>
-                        </div>
-                        <div class="text-right ">
-                            <a href="javascript:void(0)" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 <div class="modal fade" id="image-upload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

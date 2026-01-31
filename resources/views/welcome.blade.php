@@ -58,7 +58,7 @@
                                     <img src="{{asset('build/assets/images/icons/notas-check.svg')}}" class="info-card-icon" />
                                     <h5 class="clash text-center mt-2">Notas globales</h5>
                                     <div class="stat-value">
-                                        <span class="counter" data-count="40">0</span>
+                                        <span class="counter" data-count="{{ $total_notas }}">0</span>
                                         <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="10">0</span>%</span>
                                     </div>
                                 </div>
@@ -308,44 +308,52 @@
                 <div class="news-container pt-5">
                     <div class="noticias">
                         <div class="row text-center d-flex justify-content-center counters">
-                            <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="400">
-                                <div class="glass-card h-100 text-white">
-                                    <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                        <div class="glass-card-content">
-                                            <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                            <small class="clash">Los Angeles, USA</small>
-                                            <br>
-                                            <br>
-                                            <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                        </div>
-                                    </div>
+                            <div id="carouselNews" class="carousel slide">
+                                <div class="carousel-inner">
+                                @php $i = 0 ; $firstclass = ''; @endphp
+                                
+                                @foreach($notas as $nota)
+                                    @php if($i == 0 ): $firstclass = 'active'; else: $firstclass = ''; endif;  @endphp
+                                    
+                                    @if ($i % 3 === 0) 
+                                        @if ($i !== 0 )
+                                            </div>
+                                            </div>
+                                        @endif
+                                        <div class="carousel-item {{$firstclass}}"> 
+                                            <div class="row text-center d-flex justify-content-center">
+                                        
+                                    @endif
+                                                <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
+                                                    <div class="glass-card h-100 text-white">
+                                                        <div class="glasscard-bg nota-item" style="background-image:url('{{ $nota->cover }}');">
+                                                            <div class="glass-card-content">
+                                                                <h5 class="clash-bold text-center mt-2 mb-0">{{ $nota->title }}</h5>
+                                                                <small class="clash">{{ $nota->location }}</small>
+                                                                <br>
+                                                                <br>
+                                                                <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    
+                                    @php $i++ @endphp
+                                    @endforeach
+
+                                    @if ($i % 3 !== 0) 
+                                            </div><!-- row -->
+                                        </div><!-- carousel item -->
+                                    @endif
                                 </div>
-                            </div>
-                            <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="500">
-                                <div class="glass-card h-100 text-white">
-                                    <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                        <div class="glass-card-content">
-                                            <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                            <small class="clash">Los Angeles, USA</small>
-                                            <br>
-                                            <br>
-                                            <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="600">
-                                <div class="glass-card h-100 text-white">
-                                    <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                        <div class="glass-card-content">
-                                            <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                            <small class="clash">Los Angeles, USA</small>
-                                            <br>
-                                            <br>
-                                            <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselNews" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
                     </div>

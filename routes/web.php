@@ -7,6 +7,7 @@ use App\Http\Controllers\NotaController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\StatController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\HomeController;
 
 Auth::routes(['register' => false]);
 Route::get('/framed', function () {
@@ -21,8 +22,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('stats', StatController::class);
         Route::resource('forum', ForumController::class);
 
-        Route::get('/', function () {
-            return view('welcome');
-        })->middleware('auth')->name('home');
+        Route::get('/', [HomeController::class,'index'])->name('home');
+
         Route::post('/upload-image', [ImageController::class, 'store'])->name('image.store');
 });

@@ -14,34 +14,13 @@ return new class extends Migration
         Schema::create('notas', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('title');
-            $table->string('link');
-            $table->string('cover');
-            $table->string('extract');
+            $table->text('link');
+            $table->text('cover');
+            $table->text('extract');
             $table->string('location');
-            /* $table->foreignId('city_id');
-            $table->foreignId('country_id');
-            $table->foreignId('state_id'); */
+            
             $table->timestamps();
         });
-
-        
-        
-        /* Schema::create('countries', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('name');
-            $table->string('continent');
-        });
-        Schema::create('states', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('name');
-            $table->foreignId('country_id');
-        });
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('name');
-            $table->foreignId('state_id');
-        }); */
-
         
     }
 

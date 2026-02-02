@@ -319,6 +319,7 @@
                                         @if ($i !== 0 )
                                             </div>
                                             </div>
+                                            
                                         @endif
                                         <div class="carousel-item {{$firstclass}}"> 
                                             <div class="row text-center d-flex justify-content-center">
@@ -326,9 +327,9 @@
                                     @endif
                                                 <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
                                                     <div class="glass-card h-100 text-white">
-                                                        <div class="glasscard-bg nota-item" style="background-image:url('{{ $nota->cover }}');">
+                                                        <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('{{ $nota->cover }}');">
                                                             <div class="glass-card-content">
-                                                                <h5 class="clash-bold text-center mt-2 mb-0">{{ $nota->title }}</h5>
+                                                                <h5 class="clash-bold text-center mt-2 mb-0">{{ Illuminate\Support\Str::limit($nota->title, 55) }}</h5>
                                                                 <small class="clash">{{ $nota->location }}</small>
                                                                 <br>
                                                                 <br>
@@ -344,6 +345,8 @@
                                     @if ($i % 3 !== 0) 
                                             </div><!-- row -->
                                         </div><!-- carousel item -->
+                                    @else
+                                    </div>
                                     @endif
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews" data-bs-slide="prev">

@@ -30,7 +30,7 @@
                                 @forelse ($notas as $nota)
                                     <tr>
                                         <th scope="row">{{ $nota->id }}</th>
-                                        <td>{{ $nota->title }}</td>
+                                        <td>{{ Illuminate\Support\Str::limit($nota->title, 80) }}</td>
                                         
                                         <td>
                                             {{-- Action Buttons --}}

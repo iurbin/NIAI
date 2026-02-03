@@ -11,7 +11,7 @@
 
 <link href="{{asset('build/assets/css/aos.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<section id="intro" class="text-center bg-gradient-dark">
+    <section id="intro" class="text-center bg-gradient-dark">
         <div class="container">
             <div class="title-glow-container">
                 <h1 class="clash text-white" data-aos="fade-up" data-aos-delay="500">Países</h1>
@@ -27,7 +27,6 @@
             </script>
             <script src="{{asset('build/assets/map/map-main.js')}}"></script>
         </div>
-        
     </section>
     <section id="kpis" class="bg-gradient-dark">
         <div class="container">
@@ -61,6 +60,8 @@
                                         <span class="counter" data-count="{{ $total_notas }}">0</span>
                                         <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="10">0</span>%</span>
                                     </div>
+                                    <!-- Find Percentage Increase/Decrease -->
+                                    <!-- ((change number / current number) * 100) - 100 -->
                                 </div>
                             </div>
                         </div>
@@ -96,104 +97,56 @@
                 </div>
                 
                 <div id="individuales-tab" class="tab-pane fade" role="tabpanel">
-                    <div id="carouselExample" class="carousel slide">
+                    <div id="kpi-news" class="carousel slide">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row text-center d-flex justify-content-center counters">
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
+                            @php $i = 0 ; $firstclass = ''; @endphp
+                            
+                            @foreach($notas as $nota)
+                                @php if($i == 0 ): $firstclass = 'active'; else: $firstclass = ''; endif;  @endphp
+                                
+                                @if ($i % 3 === 0) 
+                                    @if ($i !== 0 )
+                                        </div>
+                                        </div>
+                                        
+                                    @endif
+                                    <div class="carousel-item {{$firstclass}}"> 
+                                        <div class="row text-center d-flex justify-content-center">
+                                    
+                                @endif
+                                            <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
+                                                <div class="glass-card h-100 text-white">
+                                                    <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('{{ $nota->cover }}');">
+                                                        <div class="glass-card-content">
+                                                            <h5 class="clash-bold text-center mt-2 mb-0">{{ Illuminate\Support\Str::limit($nota->title, 55) }}</h5>
+                                                            <small class="clash">{{ $nota->location }}</small>
+                                                            <br>
+                                                            <br>
+                                                            <a class="btn btn-secondary btn-small btn-clash-rounded" href="javascript:void(0)">Ver KPIs</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                
+                                @php $i++ @endphp
+                                @endforeach
+
+                                @if ($i % 3 !== 0) 
+                                        </div><!-- row -->
+                                    </div><!-- carousel item -->
+                                @else
                                 </div>
+                                @endif
                             </div>
-                            <div class="carousel-item">
-                                <div class="row text-center d-flex justify-content-center counters">
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mb-4 kpi-item" data-aos="zoom-in" data-aos-delay="0">
-                                        <div class="glass-card h-100 text-white">
-                                            <div class="glasscard-bg nota-item" style="background-image:url('http://127.0.0.1:8000/storage/images/e5PPhhTSHFmgwGbaae27dveVV3j42TTwZ9QXfmwF.jpg');">
-                                                <div class="glass-card-content">
-                                                    <h5 class="clash-bold text-center mt-2 mb-0">Lorem ipsum dolor sit ammet</h5>
-                                                    <small class="clash">Los Angeles, USA</small>
-                                                    <br>
-                                                    <br>
-                                                    <a class="btn btn-secondary btn-small btn-clash-rounded">Ver KPIs</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#kpi-news" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#kpi-news" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -310,53 +263,54 @@
                         <div class="row text-center d-flex justify-content-center counters">
                             <div id="carouselNews" class="carousel slide">
                                 <div class="carousel-inner">
-                                @php $i = 0 ; $firstclass = ''; @endphp
-                                
-                                @foreach($notas as $nota)
-                                    @php if($i == 0 ): $firstclass = 'active'; else: $firstclass = ''; endif;  @endphp
+                                    @php $i = 0 ; $firstclass = ''; @endphp
                                     
-                                    @if ($i % 3 === 0) 
-                                        @if ($i !== 0 )
-                                            </div>
-                                            </div>
+                                    @foreach($notas as $nota)
+                                        @php if($i == 0 ): $firstclass = 'active'; else: $firstclass = ''; endif;  @endphp
+                                        
+                                        @if ($i % 3 === 0) 
+                                            @if ($i !== 0 )
+                                                </div>
+                                                </div>
+                                                
+                                            @endif
+                                            <div class="carousel-item {{$firstclass}}"> 
+                                                <div class="row text-center d-flex justify-content-center">
                                             
                                         @endif
-                                        <div class="carousel-item {{$firstclass}}"> 
-                                            <div class="row text-center d-flex justify-content-center">
-                                        
-                                    @endif
-                                                <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
-                                                    <div class="glass-card h-100 text-white">
-                                                        <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('{{ $nota->cover }}');">
-                                                            <div class="glass-card-content">
-                                                                <h5 class="clash-bold text-center mt-2 mb-0">{{ Illuminate\Support\Str::limit($nota->title, 55) }}</h5>
-                                                                <small class="clash">{{ $nota->location }}</small>
-                                                                <br>
-                                                                <br>
-                                                                <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
+                                                    <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
+                                                        <div class="glass-card h-100 text-white">
+                                                            <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('{{ $nota->cover }}');">
+                                                                <div class="glass-card-content">
+                                                                    <h5 class="clash-bold text-center mt-2 mb-0">{{ Illuminate\Support\Str::limit($nota->title, 55) }}</h5>
+                                                                    <small class="clash">{{ $nota->location }}</small>
+                                                                    <br>
+                                                                    <br>
+                                                                    <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                    
-                                    @php $i++ @endphp
-                                    @endforeach
+                                        
+                                        @php $i++ @endphp
+                                        @endforeach
 
-                                    @if ($i % 3 !== 0) 
-                                            </div><!-- row -->
-                                        </div><!-- carousel item -->
-                                    @else
+                                        @if ($i % 3 !== 0) 
+                                                </div><!-- row -->
+                                            </div><!-- carousel item -->
+                                        @else
+                                        </div>
+                                        @endif
                                     </div>
-                                    @endif
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselNews" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselNews" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
                     </div>

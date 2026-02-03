@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="{{ asset('build/assets/js/jquery3.7.min.js') }}"></script>  
 </head>
 <body>
     <div id="app">
@@ -36,38 +37,44 @@
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     
-                    <div class="offcanvas-body">
+                    <div class="offcanvas-body sidebar-menu">
                         
-                        {{-- <div class="custom-search-menu">
+                        <!-- {{-- <div class="custom-search-menu">
                             <i class="bi bi-search"></i>
                             <input type="text" placeholder="Menú"> 
-                        </div> --}}
+                        </div> --}} -->
 
                         <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link"  href="#intro">
                             Mapa 
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#kpis">
                             KPIs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#reddit">
                             Reddit
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#noticias">
                             Noticias
                             </a>
                         </li>
                         </ul>
                     </div>
                     </div>
-                
+                <script>
+                    jQuery(function($){
+                        $('#sidebarMenu .nav-link').on('click', function(e){
+                            $("#sidebarMenu").offcanvas('hide');
+                        })
+                    });
+                </script>                
         </div>
         <main class="">
             @yield('content')

@@ -3,6 +3,14 @@
     /* const width = window.innerWidth-700;
     const height = window.innerHeight-150;
      */
+
+
+    const markers = [
+            { name: "New York", long: -74.006, lat: 40.7128 },
+            { name: "London", long: -0.1276, lat: 51.5074 }
+        ];
+
+        
     const width = container.offsetWidth;
     const height = container.offsetHeight;
     const sensitivity = 75; // Controls drag speed
@@ -69,6 +77,18 @@
             .attr("fill", 'url(#country)')
             .on("click", clicked);
 
+            /* map.selectAll(".marker")
+            .data(markers)
+            .enter()
+            .append("circle")
+            .attr("class", "marker")
+            .attr("r", 5)
+            .attr("fill", "red")
+            .attr("transform", d => {
+                // 3. Project lon/lat to SVG coordinates
+                const p = projection([d.long, d.lat]);
+                return `translate(${p[0]}, ${p[1]})`;
+            }); */
         
         // 6. ANIMATION LOOP
         // Rotate the globe automatically
@@ -93,9 +113,10 @@
         // 7. CLICK INTERACTION (Zoom to Continent/Country)
         function clicked(event, d) {
             // Stop rotation
-            var selectedCountry = d.properties.name;
+            var selectedCountryObject = d;
+            var selectedCountry = d.properties;
             var selectedCountryID = d.id;
-            console.log(selectedCountryID);
+            d3.select(this).style('fill','#0a0aa3').style('stroke','white').style('stroke-width','2');
             if (rotationTimer) rotationTimer.stop();
 
             // Calculate the centroid (center) of the clicked country
@@ -121,6 +142,7 @@
                         path.projection(projection);
                         svg.selectAll("path").attr("d", path);
                         grid.attr("d", path);
+
                         
                         // Update water size
                         svg.selectAll(".water")
@@ -149,6 +171,8 @@
                         svg.selectAll("path").attr("d", path);
                         grid.attr("d", path);
                         svg.selectAll(".water").attr("r", projection.scale());
+                        svg.selectAll('.country')
+                        .style('fill','url(#country)').style('stroke','').style('stroke-width','');
                     };
                 })
                 .on("end", function() {
@@ -156,6 +180,8 @@
                     startRotation(); 
                 });
         }
+
+        
 
         
     });

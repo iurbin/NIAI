@@ -4,11 +4,14 @@
     const height = window.innerHeight-150;
      */
 
-
-    const markers = [
-            { name: "New York", long: -74.006, lat: 40.7128 },
-            { name: "London", long: -0.1276, lat: 51.5074 }
-        ];
+    const citiesData = [
+        { name: "New York", country: "United States of America", coords: [-74.006, 40.7128] },
+        { name: "Los Angeles", country: "United States of America", coords: [-118.2437, 34.0522] },
+        { name: "Brasilia", country: "Brazil", coords: [-47.9292, -15.7801] },
+        { name: "Rio de Janeiro", country: "Brazil", coords: [-43.1729, -22.9068] },
+        { name: "Sydney", country: "Australia", coords: [151.2093, -33.8688] },
+        { name: "Melbourne", country: "Australia", coords: [144.9631, -37.8136] }
+    ];
 
         
     const width = container.offsetWidth;
@@ -39,7 +42,7 @@
 
     d3.json(dataUrl).then(world => {
         // 4. ADD WATER (Circle background)
-            svg.append("circle")
+        const water =  svg.append("circle")
                 .attr("cx", width / 2)
                 .attr("cy", height / 2)
                 .attr("r", initialScale)
@@ -77,18 +80,41 @@
             .attr("fill", 'url(#country)')
             .on("click", clicked);
 
-            /* map.selectAll(".marker")
-            .data(markers)
-            .enter()
-            .append("circle")
-            .attr("class", "marker")
-            .attr("r", 5)
-            .attr("fill", "red")
-            .attr("transform", d => {
-                // 3. Project lon/lat to SVG coordinates
-                const p = projection([d.long, d.lat]);
-                return `translate(${p[0]}, ${p[1]})`;
-            }); */
+        function redraw() {
+            // Update Water
+            water.attr("r", projection.scale());
+
+            // Update Map Paths
+            path.projection(projection);
+            mapGroup.selectAll("path").attr("d", path);
+
+            // Update City Markers (if any exist)
+            // Logic: We calculate screen x/y from lat/long
+            // If the city is on the back of the globe, we hide it.
+            markerGroup.selectAll(".city-marker")
+                .attr("cx", d => projection(d.coords)[0])
+                .attr("cy", d => projection(d.coords)[1])
+                .style("display", d => {
+                    // d3.geoCircle logic to check visibility is complex.
+                    // Simple hack: Check the distance from the center of the projection.
+                    // If distance is > projection radius, it's behind the globe.
+                    // However, standard d3 projection returns null if clipped? 
+                    // Let's use the 'd' generator for points or simple coordinate check:
+                    
+                    const coordinate = d.coords;
+                    const gdistance = d3.geoDistance(coordinate, projection.invert([width/2, height/2]));
+                    return (gdistance > 1.57) ? 'none' : 'inline'; // 1.57 radians is approx 90 degrees
+                });
+
+            markerGroup.selectAll(".city-label")
+                .attr("x", d => projection(d.coords)[0] + 8)
+                .attr("y", d => projection(d.coords)[1] + 4)
+                .style("display", d => {
+                     const coordinate = d.coords;
+                     const gdistance = d3.geoDistance(coordinate, projection.invert([width/2, height/2]));
+                     return (gdistance > 1.57) ? 'none' : 'inline';
+                });
+        }
         
         // 6. ANIMATION LOOP
         // Rotate the globe automatically
@@ -100,13 +126,15 @@
                 projection.rotate([rotate[0] + 0.2 * k, rotate[1]]);
                 
                 // Redraw paths
-                path.projection(projection);
-                svg.selectAll("path").attr("d", path);
-                
+                /* path.projection(projection);
+                svg.selectAll("path").attr("d", path); */
+                redraw();
                 // Keep water circle centered (if we were dragging)
                 // In simple rotation, water stays static, but good practice
             });
         }
+
+        
 
         startRotation();
 
@@ -116,7 +144,8 @@
             var selectedCountryObject = d;
             var selectedCountry = d.properties;
             var selectedCountryID = d.id;
-            d3.select(this).style('fill','#0a0aa3').style('stroke','white').style('stroke-width','2');
+            var currentCountry = d3.select(this).style('fill','#0a0aa3').style('stroke','white').style('stroke-width','2');
+            
             if (rotationTimer) rotationTimer.stop();
 
             // Calculate the centroid (center) of the clicked country
@@ -143,7 +172,6 @@
                         svg.selectAll("path").attr("d", path);
                         grid.attr("d", path);
 
-                        
                         // Update water size
                         svg.selectAll(".water")
                            .attr("r", projection.scale());

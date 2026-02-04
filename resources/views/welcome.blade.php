@@ -25,7 +25,7 @@
                 const dataUrl = "{{asset('build/assets/map/countries-110m.json')}}";
                 patternBackground = "{{asset('build/assets/map/country-fill.png')}}";
             </script>
-            <script src="{{asset('build/assets/map/map-main.js')}}"></script>
+            <script src="{{asset('build/assets/map/map-mainv2.js')}}"></script>
         </div>
     </section>
     <section id="kpis" class="bg-gradient-dark">

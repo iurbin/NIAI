@@ -29,4 +29,8 @@ class HomeController extends Controller
         $total_notas = $notas->count();
         return view('welcome', compact('notas', 'total_notas'));
     }
+    public function dashboard()
+    {
+        return view('home');
+    }
 }

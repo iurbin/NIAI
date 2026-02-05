@@ -6,8 +6,7 @@ container = document.getElementById('globe-container');
     let rotationTimer;
     let activeCountry = null; // Track which country is focused
 
-    // SAMPLE CITY DATA
-    // In a real app, you might fetch this from a JSON file
+
     const citiesData = [
         { name: "New York", country: "United States of America", coords: [-74.006, 40.7128] },
         { name: "Las Vegas", country: "United States of America", coords: [-115.13639, 36.175] },
@@ -17,7 +16,6 @@ container = document.getElementById('globe-container');
         { name: "Sydney", country: "Australia", coords: [151.2093, -33.8688] },
         { name: "Melbourne", country: "Australia", coords: [144.9631, -37.8136] }
     ];
-
     // --- 2. SETUP SVG ---
     const svg = d3.select("#globe-container")
         .append("svg")

@@ -8,9 +8,9 @@ container = document.getElementById('globe-container');
 
 
     const citiesData = [
-        { name: "New York", country: "United States of America", coords: [-74.006, 40.7128] },
-        { name: "Las Vegas", country: "United States of America", coords: [-115.13639, 36.175] },
-        { name: "Los Angeles", country: "United States of America", coords: [-118.2437, 34.0522] },
+        { name: "New York", country: "USA", coords: [-74.006, 40.7128] },
+        { name: "Las Vegas", country: "USA", coords: [-115.13639, 36.175] },
+        { name: "Los Angeles", country: "USA", coords: [-118.2437, 34.0522] },
         { name: "Brasilia", country: "Brazil", coords: [-47.9292, -15.7801] },
         { name: "Rio de Janeiro", country: "Brazil", coords: [-43.1729, -22.9068] },
         { name: "Sydney", country: "Australia", coords: [151.2093, -33.8688] },

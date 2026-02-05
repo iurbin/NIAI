@@ -21,6 +21,11 @@ class NotaController extends Controller
         $notas = Nota::paginate(15);
         return view('notas.index', compact('notas'));
     }
+    public function getbycity($city)
+    {
+        $notas = Nota::where('location', 'like', '%'.$city.'%')->paginate(9);
+        return $notas;
+    }
 
     /**
      * Show the form for creating a new resource.

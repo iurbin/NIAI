@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('forum', ForumController::class);
 
         Route::get('/', [HomeController::class,'index'])->name('home');
+        Route::get('/getbycity/{city}', [ApiController::class,'getbycity'])->name('getbycity');
 
         Route::post('/upload-image', [ImageController::class, 'store'])->name('image.store');
 });

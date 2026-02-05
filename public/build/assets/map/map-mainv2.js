@@ -217,7 +217,8 @@ container = document.getElementById('globe-container');
                 .attr("cx", d => projection(d.coords)[0])
                 .attr("cy", d => projection(d.coords)[1])
                 .on('click', function(event, d) {
-                    alert('get news from ' + d.name);
+                    var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
+                    modal_city_news.show();
                 });
 
             // Add Text

@@ -348,3 +348,6 @@ section{
     pointer-events: none;
     opacity: 0; /* Hidden initially, fade in after zoom */
 }
+.modal-content.transparent{
+    background-color: transparent !important;
+}

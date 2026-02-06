@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/', [HomeController::class,'index'])->name('home');
         Route::get('/getbycity', [ApiController::class,'getbycity'])->name('getbycity');
-        Route::get('/getcities', [ApiController::class,'getcities'])->name('getcities');
+        Route::post('/getcities', [ApiController::class,'getcities'])->name('getcities');
 
         Route::post('/upload-image', [ImageController::class, 'store'])->name('image.store');
 });

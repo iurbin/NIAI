@@ -13,15 +13,17 @@ class ApiController extends Controller
     
     public function getbycity(Request $request)
     {
-        $notas = Nota::where('location', 'like', '%'.$request->input('city').'%')->paginate();
-        return $notas;
+        $notas = Nota::where('location', 'like', '%'.$request->input('city').'%')->paginate(15);
+        //return $notas;
+        return view('partials.notasbycity', compact('notas'))->render();
     }
-    public function getcities(Request $request)
+    public function getcities()
     {   
-        $country = $request->input('country'); 
+        
         $sql ="SELECT 
                     cl.name, 
                     cl.coords,
+                    cl.country,
                     COUNT(*) as total_notes
                 FROM 
                     notas n
@@ -29,14 +31,22 @@ class ApiController extends Controller
                     city_locations cl 
                 ON 
                     cl.name = TRIM(SUBSTRING_INDEX(n.location, ',', 1))
-                where
-                    n.location like '%".$country."%'
                 GROUP BY 
                     cl.name, 
+                    cl.country, 
                     cl.coords";
-        $cities = DB::select($sql);
-       
+        $cities_from_db = DB::select($sql);
+        $cities = [];
+        foreach ($cities_from_db as $city) {
+            $row = [
+                'name' => $city->name, 
+                'country'=>$city->country, 
+                'coords'=> json_decode($city->coords),
+                'total_notas'=> $city->total_notes 
+                ];
+            $cities[] = $row;
+        }
 
-        return $cities;  
+        return $cities;
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nota;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         $notas = Nota::paginate(15);
         $total_notas = $notas->count();
+        
         return view('welcome', compact('notas', 'total_notas'));
     }
     public function dashboard()

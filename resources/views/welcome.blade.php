@@ -329,59 +329,23 @@
     <div class="modal fade" id="city_news" aria-hidden="true" aria-labelledby="" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content transparent text-white">
-                    <h2 class="text-center my-2">Publicaciones desde Los Angeles, USA</h2>
+                    <h2 class="text-center my-2">Publicaciones desde <div class="location-feed">cargardo...</div></h2>
                     <div class="container">
-                        <div class="row justify-content-between">
-                                <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="glass-card h-100 text-white">
-                                        <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('https://imagenes.elpais.com/resizer/v2/EJJBI6OZWNA57PEPDZO5R5OVXI.jpg?auth=6b4357fbacb8b0c353944865c50f511e8cc5d3b51c6264993f689e52b594d871&width=1200');">
-                                            <div class="glass-card-content">
-                                                <h5 class="clash-bold text-center mt-2 mb-0">title</h5>
-                                                <small class="clash">Location</small>
-                                                <br>
-                                                <br>
-                                                <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="glass-card h-100 text-white">
-                                        <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('https://imagenes.elpais.com/resizer/v2/EJJBI6OZWNA57PEPDZO5R5OVXI.jpg?auth=6b4357fbacb8b0c353944865c50f511e8cc5d3b51c6264993f689e52b594d871&width=1200');">
-                                            <div class="glass-card-content">
-                                                <h5 class="clash-bold text-center mt-2 mb-0">title</h5>
-                                                <small class="clash">Location</small>
-                                                <br>
-                                                <br>
-                                                <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="400">
-                                    <div class="glass-card h-100 text-white">
-                                        <div class="glasscard-bg nota-item d-flex align-items-center" style="background-image:url('https://imagenes.elpais.com/resizer/v2/EJJBI6OZWNA57PEPDZO5R5OVXI.jpg?auth=6b4357fbacb8b0c353944865c50f511e8cc5d3b51c6264993f689e52b594d871&width=1200');">
-                                            <div class="glass-card-content">
-                                                <h5 class="clash-bold text-center mt-2 mb-0">title</h5>
-                                                <small class="clash">Location</small>
-                                                <br>
-                                                <br>
-                                                <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row justify-content-between news-container">
+                                
+                            
                         </div>
                     </div>
             </div>
         </div>
     </div>
-
+    
     <script src="{{asset('build/assets/js/counter2.js')}}"></script>
     <script src="{{asset('build/assets/js/aos.js')}}"></script>
-    {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
+    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>  -->
+     
     <script>
+        
         // Initialize Animations
         AOS.init({
             duration: 1000,

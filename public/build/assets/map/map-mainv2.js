@@ -6,16 +6,27 @@ container = document.getElementById('globe-container');
     let rotationTimer;
     let activeCountry = null; // Track which country is focused
 
+    
+    let token = document.querySelector("meta[name='csrf-token']").content;
+    
+    function getCities(){
+        const payload = { _token: token };
+        fetch('./getcities', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // Tell the server you're sending JSON
+        },
+        body: JSON.stringify(payload), // Convert your JS object to a JSON string
+        })
+        .then(response => response.json())
+        .then(data => {
+            citiesData = data;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    citiesData = getCities();
 
-    const citiesData = [
-        { name: "New York", country: "USA", coords: [-74.006, 40.7128] },
-        { name: "Las Vegas", country: "USA", coords: [-115.13639, 36.175] },
-        { name: "Los Angeles", country: "USA", coords: [-118.2437, 34.0522] },
-        { name: "Brasilia", country: "Brazil", coords: [-47.9292, -15.7801] },
-        { name: "Rio de Janeiro", country: "Brazil", coords: [-43.1729, -22.9068] },
-        { name: "Sydney", country: "Australia", coords: [151.2093, -33.8688] },
-        { name: "Melbourne", country: "Australia", coords: [144.9631, -37.8136] }
-    ];
+
     // --- 2. SETUP SVG ---
     const svg = d3.select("#globe-container")
         .append("svg")
@@ -166,6 +177,7 @@ container = document.getElementById('globe-container');
             // Note: 110m file uses 'name', sometimes requires distinct ID mapping.
             // For this demo, we match loosely on country name if available in properties.
             // The unpkg file puts names in `properties.name`.
+
             const clickedCountryName = d.properties.name;
 
             d3.select(this).style('fill','#0a0aa3').style('stroke','white').style('stroke-width','2');
@@ -177,6 +189,7 @@ container = document.getElementById('globe-container');
             if (rotationTimer) rotationTimer.stop();
 
             // Find Markers for this country
+
             const countryCities = citiesData.filter(c => c.country === clickedCountryName);
 
             // Setup Transition
@@ -215,8 +228,25 @@ container = document.getElementById('globe-container');
                 .attr("cx", d => projection(d.coords)[0])
                 .attr("cy", d => projection(d.coords)[1])
                 .on('click', function(event, d) {
-                    var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
-                    modal_city_news.show();
+                    
+
+                    
+                    fetch('./getbycity?city=' + d.name, {
+                    method: 'get',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest', // Tells Laravel it's an AJAX request
+                        'Content-Type': 'application/html'
+                    }})
+                    .then(response => response.json())
+                    .then(data => {
+                        notas = data;
+                        var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
+                        $('.location-feed').html(d.name +', ' + d.country);
+                        $('.news-container').html(data);
+                        modal_city_news.show();
+                    })
+                    .catch(error => console.error('Error:', error));
+                    
                 });
 
             // Add Text

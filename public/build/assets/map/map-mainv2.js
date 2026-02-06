@@ -232,11 +232,7 @@ container = document.getElementById('globe-container');
 
                     
                     fetch('./getbycity?city=' + d.name, {
-                    method: 'get',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest', // Tells Laravel it's an AJAX request
-                        'Content-Type': 'application/html'
-                    }})
+                    method: 'get'})
                     .then(response => response.json())
                     .then(data => {
                         notas = data;
@@ -244,8 +240,7 @@ container = document.getElementById('globe-container');
                         $('.location-feed').html(d.name +', ' + d.country);
                         $('.news-container').html(data);
                         modal_city_news.show();
-                    })
-                    .catch(error => console.error('Error:', error));
+                    });
                     
                 });
 

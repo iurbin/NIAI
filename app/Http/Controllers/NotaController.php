@@ -89,22 +89,24 @@ class NotaController extends Controller
         $stat_value = $request['stat_value'];
         $stat_comparative = $request['stat_comparative'];
         $i = 0;
-        foreach ($stat_title as $stat) {
-            if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
-                $stat = new Stat([
-                    'label' => $stat,
-                    'value' => $stat_value[$i],
-                    'increase' => $stat_comparative[$i],
-                    'item_type' => 'nota_data',
-                ]);
+        if($stat_title):
+            foreach ($stat_title as $stat) {
+                if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
+                    $stat = new Stat([
+                        'label' => $stat,
+                        'value' => $stat_value[$i],
+                        'increase' => $stat_comparative[$i],
+                        'item_type' => 'nota_data',
+                    ]);
 
-                $nota->stats()->save($stat);
-            endif;
-            $i++;
+                    $nota->stats()->save($stat);
+                endif;
+                $i++;
 
 
-            
-        }
+                
+            }
+        endif;
         
         return redirect()->route('notas.index', $nota)
                          ->with('success', 'Publicación actualizada exitosamente!');

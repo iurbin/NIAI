@@ -331,8 +331,7 @@
             <div class="modal-content transparent text-white">
                     <h2 class="text-center my-2">Publicaciones desde <div class="location-feed">cargardo...</div></h2>
                     <div class="container">
-                        <div class="row justify-content-between news-container">
-                                
+                        <div class="row justify-content-center news-container">
                             
                         </div>
                     </div>

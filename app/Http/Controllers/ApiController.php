@@ -15,7 +15,8 @@ class ApiController extends Controller
     {
         $notas = Nota::where('location', 'like', '%'.$request->input('city').'%')->paginate(15);
         //return $notas;
-        return view('partials.notasbycity', compact('notas'))->render();
+         $returnHTML = view('partials.notasbycity', compact('notas'))->render();
+         return response()->json(['html' => $returnHTML]);
     }
     public function getcities()
     {   

@@ -241,6 +241,22 @@ container = document.getElementById('globe-container');
                         $('.news-container').html(data);
                         modal_city_news.show();
                     });
+
+                    $.ajax({
+                        url: './getbycity?city=' + d.name, // Use the route URL
+                        type: 'GET',
+                        dataType: 'json', // Expecting a JSON response
+                        success: function(response) {
+                            
+                            var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
+                            $('.location-feed').html(d.name +', ' + d.country);
+                            $('.news-container').html(response.html);
+                            modal_city_news.show();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("An error occurred: " + error);
+                        }
+                    });
                     
                 });
 

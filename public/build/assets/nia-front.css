@@ -351,3 +351,13 @@ section{
 .modal-content.transparent{
     background-color: transparent !important;
 }
+.card.custom-card {
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+.custom-card .nota-cover{
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+}

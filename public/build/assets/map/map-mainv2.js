@@ -250,7 +250,7 @@ container = document.getElementById('globe-container');
                             
                             var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
                             $('.location-feed').html(d.name +', ' + d.country);
-                            $('.news-container').html(response.html);
+                            $('.map-news-container').html(response.html);
                             modal_city_news.show();
                         },
                         error: function(xhr, status, error) {

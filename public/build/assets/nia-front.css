@@ -332,13 +332,12 @@ section{
 }
 
 .city-marker {
-    fill: #ffffff;
-    stroke: #000;
-    stroke-width: 1px;
+    
 }
 .city-marker:hover{
-    fill: rgb(255, 0, 0);
-    
+    opacity: 0.9;
+    cursor: pointer;
+    filter:hue-rotate(90deg);
 }
 
 .city-label {

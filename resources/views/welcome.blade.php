@@ -24,6 +24,7 @@
             <script>
                 const dataUrl = "{{asset('build/assets/map/countries-110m.json')}}";
                 patternBackground = "{{asset('build/assets/map/country-fill.png')}}";
+                markerpath = "{{asset('build/assets/images/marker.svg')}}";
             </script>
             <script src="{{asset('build/assets/map/map-mainv2.js')}}"></script>
         </div>

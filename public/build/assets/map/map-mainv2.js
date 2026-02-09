@@ -77,7 +77,50 @@ container = document.getElementById('globe-container');
                      return (gdistance > 1.57) ? 'none' : 'inline';
                 }); 
             
-            
+            addMarkers(citiesData);
+        }
+    
+        function addMarkers(cities) {
+            if (cities.length === 0) return;
+
+            // Add Circles
+            markerGroup.selectAll("circle")
+                .data(cities)
+                .enter().append("circle")
+                .attr("class", "city-marker")
+                .attr("r", 10) // marker radius
+                .attr("cx", d => projection(d.coords)[0])
+                .attr("cy", d => projection(d.coords)[1])
+                .style('fill','url(#markerpath)')
+                .on('click', function(event, d) {
+                    $.ajax({
+                        url: './getbycity?city=' + d.name, // Use the route URL
+                        type: 'GET',
+                        dataType: 'json', // Expecting a JSON response
+                        success: function(response) {
+                            
+                            var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
+                            $('.location-feed').html(d.name +', ' + d.country);
+                            $('.map-news-container').html(response.html);
+                            modal_city_news.show();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("An error occurred: " + error);
+                        }
+                    });
+                    
+                });
+
+            // Add Text
+            /* markerGroup.selectAll("text")
+                .data(cities)
+                .enter().append("text")
+                .attr("class", "city-label")
+                .text(d => d.name)
+                .attr("x", d => projection(d.coords)[0] + 15)
+                .attr("y", d => projection(d.coords)[1] + 4)
+                .transition().duration(500)
+                .style("opacity", 1); */ // Fade in
         }
     // --- 4. LAYERS (Order matters!) ---
     function startRotation() {
@@ -87,6 +130,7 @@ container = document.getElementById('globe-container');
                 projection.rotate([rotate[0] + 0.2 * k, rotate[1]]);
                 
                 redraw();
+                
             });
         }
     // --- 10. RESET FUNCTION ---
@@ -106,6 +150,7 @@ container = document.getElementById('globe-container');
                         svg.selectAll('.country')
                         .style('fill','url(#country)').style('stroke','').style('stroke-width','');
                         redraw();
+                        
                     };
                 })
                 .on("end", function() {
@@ -144,6 +189,21 @@ container = document.getElementById('globe-container');
             .attr('width','5')
             .attr('height','5')
             .attr('href',patternBackground);
+
+        defs.append('pattern')
+                .attr('id','markerpath')
+                .attr('width','15')
+                .attr('height','15').append('image')
+            .attr('x','1')
+            .attr('y','1')
+            .attr('width','15')
+            .attr('height','15')
+            .attr('href',markerpath);
+
+        
+            
+
+        
 
         // Draw Graticule
         const graticule = d3.geoGraticule();
@@ -190,7 +250,7 @@ container = document.getElementById('globe-container');
 
             // Find Markers for this country
 
-            const countryCities = citiesData.filter(c => c.country === clickedCountryName);
+            //const countryCities = citiesData.filter(c => c.country === clickedCountryName);
 
             // Setup Transition
             const centroid = d3.geoCentroid(d);
@@ -211,66 +271,12 @@ container = document.getElementById('globe-container');
                 })
                 .on("end", function() {
                     // AFTER Zoom finishes: Add markers
-                    addMarkers(countryCities);
+                    
                 });
         }
 
         // --- 9. ADD MARKERS FUNCTION ---
-        function addMarkers(cities) {
-            if (cities.length === 0) return;
-
-            // Add Circles
-            markerGroup.selectAll("circle")
-                .data(cities)
-                .enter().append("circle")
-                .attr("class", "city-marker")
-                .attr("r", 10) // marker radius
-                .attr("cx", d => projection(d.coords)[0])
-                .attr("cy", d => projection(d.coords)[1])
-                .on('click', function(event, d) {
-                    
-
-                    
-                    fetch('./getbycity?city=' + d.name, {
-                    method: 'get'})
-                    .then(response => response.json())
-                    .then(data => {
-                        notas = data;
-                        var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
-                        $('.location-feed').html(d.name +', ' + d.country);
-                        $('.news-container').html(data);
-                        modal_city_news.show();
-                    });
-
-                    $.ajax({
-                        url: './getbycity?city=' + d.name, // Use the route URL
-                        type: 'GET',
-                        dataType: 'json', // Expecting a JSON response
-                        success: function(response) {
-                            
-                            var modal_city_news = new bootstrap.Modal(document.getElementById('city_news'));
-                            $('.location-feed').html(d.name +', ' + d.country);
-                            $('.map-news-container').html(response.html);
-                            modal_city_news.show();
-                        },
-                        error: function(xhr, status, error) {
-                            console.error("An error occurred: " + error);
-                        }
-                    });
-                    
-                });
-
-            // Add Text
-            markerGroup.selectAll("text")
-                .data(cities)
-                .enter().append("text")
-                .attr("class", "city-label")
-                .text(d => d.name)
-                .attr("x", d => projection(d.coords)[0] + 15)
-                .attr("y", d => projection(d.coords)[1] + 4)
-                .transition().duration(500)
-                .style("opacity", 1); // Fade in
-        }
+        
 
         
     });

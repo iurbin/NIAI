@@ -59,7 +59,7 @@
                                     <h5 class="clash text-center mt-2">Notas globales</h5>
                                     <div class="stat-value">
                                         <span class="counter" data-count="{{ $total_notas }}">0</span>
-                                        <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="10">0</span>%</span>
+                                        <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="10">0</span>%</span> -->
                                     </div>
                                     <!-- Find Percentage Increase/Decrease -->
                                     <!-- ((change number / current number) * 100) - 100 -->
@@ -73,8 +73,8 @@
                                     <img src="{{asset('build/assets/images/icons/user-views.svg')}}" class="info-card-icon" />
                                     <h5 class="clash text-center mt-2">Visitas totales</h5>
                                     <div class="stat-value">
-                                        <span class="counter" data-count="50">0</span>
-                                        <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span>
+                                        <span class="counter" data-start="<?php echo intval($vistas_total) - 200 ?>" data-count="{{ $vistas_total }}"></span>
+                                        <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span> -->
                                     </div>
                                 </div>
                             </div>
@@ -86,8 +86,8 @@
                                     <img src="{{asset('build/assets/images/icons/goals.svg')}}" class="info-card-icon" />
                                     <h5 class="clash text-center mt-2">Alcance total</h5>
                                     <div class="stat-value">
-                                        <span class="counter" data-count="20">0</span>
-                                        <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="60">0</span>%</span>
+                                        <span class="counter" data-start="<?php echo intval($alcance_total) - 200 ?>" data-count="{{ $alcance_total }}"></span>
+                                        <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="60">0</span>%</span> -->
                                     </div>
                                 </div>
                             </div>

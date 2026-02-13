@@ -15,7 +15,7 @@ const animateCounters = (entries, observer) => {
                 const target = +counter.getAttribute('data-target');
                 // Get current number displayed
                 const count = +counter.innerText;
-                
+                console.log(count);
                 // Calculate increment step (dynamic based on target size)
                 const inc = target / speed;
 

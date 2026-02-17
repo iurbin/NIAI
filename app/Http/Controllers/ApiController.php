@@ -11,6 +11,11 @@ class ApiController extends Controller
 {
     //
     
+    public function get_article_info(Request $request)
+    {
+        $nota = Nota::find($request['id']);
+        return view('partials.article_info', compact('nota'));
+    }
     public function getbycity(Request $request)
     {
         $notas = Nota::where('location', 'like', '%'.$request->input('city').'%')->paginate(15);

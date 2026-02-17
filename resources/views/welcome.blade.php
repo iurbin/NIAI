@@ -123,7 +123,7 @@
                                                             <small class="clash">{{ $nota->location }}</small>
                                                             <br>
                                                             <br>
-                                                            <a class="btn btn-secondary btn-small btn-clash-rounded" href="javascript:void(0)">Ver KPIs</a>
+                                                            <a class="btn btn-secondary btn-small btn-clash-rounded btn-article-info" data-id="{{$nota->id}}" href="{{ route('article_info') }}">Ver KPIs</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -151,7 +151,7 @@
                 </div>
             </div>
         </div>
-        
+    <script src="{{asset('build/assets/js/article_info_control.js')}}"></script>
     </section>
 
     
@@ -336,6 +336,14 @@
                             
                         </div>
                     </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="article_info" aria-hidden="true" aria-labelledby="" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content transparent text-white article_info">
+                
             </div>
         </div>
     </div>

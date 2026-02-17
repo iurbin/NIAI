@@ -102,9 +102,6 @@ class NotaController extends Controller
                     $nota->stats()->save($stat);
                 endif;
                 $i++;
-
-
-                
             }
         endif;
         

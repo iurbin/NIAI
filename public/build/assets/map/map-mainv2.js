@@ -2,7 +2,7 @@ container = document.getElementById('globe-container');
 // --- 1. CONFIG & DATA ---
     const width = container.offsetWidth;
     const height = container.offsetHeight;
-    const sensitivity = 150;
+    const sensitivity = 110;
     let rotationTimer;
     let activeCountry = null; // Track which country is focused
 

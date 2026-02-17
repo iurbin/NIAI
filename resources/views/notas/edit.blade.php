@@ -132,10 +132,10 @@
                             <label for="">Valor</label>
                             <input type="number" class="form-control" name="stat_value" id="stat_value">
                         </div>
-                        <div class="form-block mb-3">
+                        <!-- <div class="form-block mb-3">
                             <label for="">Comparativa (%)</label>
                             <input type="number" class="form-control" name="stat_comparative" id="stat_comparative">
-                        </div>
+                        </div> -->
                         <div class="form-block mb-3">
                             <a href="javascript:void(0)" id="btn-add-stat" class="btn btn-primary">Agregar</a>
                         </div>
@@ -166,6 +166,7 @@
                     </li>
                     @endforeach
                 </ul>
+                
             </div>
         </div>
     </div>

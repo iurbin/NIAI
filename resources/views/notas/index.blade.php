@@ -31,7 +31,7 @@
                                     <tr>
                                         <th scope="row">{{ $nota->id }}</th>
                                         <td>{{ Illuminate\Support\Str::limit($nota->title, 80) }} <br>
-                                            <small class="text-muted">{{$nota->location}} - {{ $nota->link }}</small></td>
+                                            <small class="text-muted">{{$nota->location}} - {{ Illuminate\Support\Str::limit($nota->link, 45) }}</small></td>
                                         
                                         <td>
                                             {{-- Action Buttons --}}

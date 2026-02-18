@@ -30,6 +30,8 @@ class HomeController extends Controller
         $total_notas = $notas->count();
         $alcance_total = Stat::where('label','Alcance')->sum('value');
         $vistas_total = Stat::where('label','Vistas')->sum('value');
+
+        $foros = Forum::paginate(15);
         
         return view('welcome', compact('notas', 'total_notas','alcance_total','vistas_total'));
     }

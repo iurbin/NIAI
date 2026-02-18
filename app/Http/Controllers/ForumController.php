@@ -6,6 +6,9 @@ use App\Models\Forum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Redirect; // Add this line
+
+
 class ForumController extends Controller
 {
     /**
@@ -24,6 +27,7 @@ class ForumController extends Controller
     public function create()
     {
         //
+        return view('forum.create');
     }
 
     /**
@@ -33,13 +37,14 @@ class ForumController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'title' => 'required',
-            'value' => 'required',
-            '' => '',
+            'link' => 'required',
+            'forum_title' => 'required',
+            'position' => 'required',
+            'state' => 'required'
         ]);
 
         // 2. Create a new instance of the model and fill it with validated data
-        $post = Nota::create($validatedData);
+        $post = Forum::create($validatedData);
 
         
         // 4. Redirect the user or return a response
@@ -60,6 +65,7 @@ class ForumController extends Controller
     public function edit(Forum $forum)
     {
         //
+        return view('forum.edit',compact('forum'));
     }
 
     /**
@@ -68,6 +74,19 @@ class ForumController extends Controller
     public function update(Request $request, Forum $forum)
     {
         //
+        $validatedData = $request->validate([
+            'link' => 'required',
+            'forum_title' => 'required',
+            'position' => 'required',
+            'state' => 'required'
+        ]);
+
+        // 2. Create a new instance of the model and fill it with validated data
+        $post = $forum->update($validatedData);
+
+        
+        // 4. Redirect the user or return a response
+        return Redirect::back();
     }
 
     /**

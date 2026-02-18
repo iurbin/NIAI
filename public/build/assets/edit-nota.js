@@ -9,7 +9,7 @@ $(document).ready(function() {
         stat_value = $('#stat_value').val();
         /* stat_comparative = $('#stat_comparative').val(); */
         
-        if(stat_title != "" && stat_value != "" && stat_comparative != ""){
+        if(stat_title != "" && stat_value != ""){
             element = '<li class="list-group-item d-flex justify-content-between">';
             element += '<div>';
             element += '<h5 class="mt-2">'+stat_title+'</h5>';
@@ -32,6 +32,8 @@ $(document).ready(function() {
         }
     });
     $('#estadisticas-container').on('click','.btn-delete-stat',function(e){
+        var deleteID = $(this).data('id');
+        $('.items-to-delete-container').append('<input type="hidden" name="items_to_delete[]" value="'+deleteID+'" />')
         $(this).parent('div').parent('.list-group-item').remove();
     });
 });

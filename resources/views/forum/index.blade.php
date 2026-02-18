@@ -8,7 +8,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2>Foros de Reddit <i class="fab fa-reddit fa-2x text-white v-middle"></i></h2>
-                <a href="{{ route('notas.create') }}" class="btn btn-primary">
+                <a href="{{ route('forum.create') }}" class="btn btn-primary">
                     Agregar nueva
                 </a>
             </div>
@@ -30,7 +30,8 @@
                                 @forelse ($items as $item)
                                     <tr>
                                         <th scope="row">{{ $item->id }}</th>
-                                        <td>{{ $item->title }}</td>
+                                        <td>{{ Illuminate\Support\Str::limit($item->forum_title, 80) }} <br>
+                                            <small class="text-muted">{{ Illuminate\Support\Str::limit($item->link, 45) }}</small></td>
                                         
                                         <td>
                                             {{-- Action Buttons --}}

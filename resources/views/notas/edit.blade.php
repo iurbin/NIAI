@@ -154,10 +154,10 @@
                         <div>
                             <h5 class="mt-2">{{ $stat->label }}</h5>
                             <p>Valor: {{ $stat->value }}<br>
-                            Comparativa: {{ $stat->increase }}</p>
+                            <!-- Comparativa: {{ $stat->increase }} --></p>
                         </div>
                         <div class="text-right ">
-                            <a href="javascript:void(0)" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
+                            <a href="javascript:void(0)" data-id="{{$stat->id}}" class="btn-delete-stat btn btn-link text-danger">Eliminar</a>
                         </div>
                         <input type="hidden" name="stat_id[]" value="{{ $stat->id }}">
                         <input type="hidden" name="stat_title[]" value="{{ $stat->label }}">
@@ -166,7 +166,9 @@
                     </li>
                     @endforeach
                 </ul>
-                
+                <div class="items-to-delete-container">
+
+                </div>
             </div>
         </div>
     </div>

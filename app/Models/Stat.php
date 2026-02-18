@@ -14,4 +14,8 @@ class Stat extends Model
     {
         return $this->belongsTo(Nota::class);
     }
+    public function forum(): BelongsTo
+    {
+        return $this->belongsTo(Forum::class);
+    }
 }

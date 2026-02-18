@@ -104,6 +104,10 @@ class NotaController extends Controller
                 $i++;
             }
         endif;
+        $items_to_delete = $request['items_to_delete'];
+        if($items_to_delete){
+            $deleted = Stat::destroy($items_to_delete);
+        }
         
         return redirect()->route('notas.index', $nota)
                          ->with('success', 'Publicación actualizada exitosamente!');

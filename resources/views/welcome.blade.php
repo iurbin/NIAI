@@ -165,7 +165,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-5">
-                        <h5 class="text-white clash">Lorem ipsum dolor sit ammet</h5>
+                        <h5 class="text-white clash">Datos Generales</h5>
                         <div class="row counters">
                             <div class="col-6 p-3 kpi-item">
                                 <div class="glass-card h-100 text-white" data-aos="zoom-in" data-aos-delay="100">
@@ -173,8 +173,8 @@
                                         <img src="{{asset('build/assets/images/icons/comments.svg')}}" class="info-card-icon" />
                                         <h5 class="clash text-center mt-2">Comentarios</h5>
                                         <div class="stat-value">
-                                            <span class="counter" data-count="50">0</span>
-                                            <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span>
+                                            <span class="counter" data-count="{{ $total_comentarios }}">0</span>
+                                            <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -185,8 +185,8 @@
                                         <img src="{{asset('build/assets/images/icons/forums.svg')}}" class="info-card-icon" />
                                         <h5 class="clash text-center mt-2">Foros atendidos</h5>
                                         <div class="stat-value">
-                                            <span class="counter" data-count="50">0</span>
-                                            <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span>
+                                            <span class="counter" data-count="{{ $total_foros }}"></span>
+                                            <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -208,36 +208,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse($foros as $foro)
                                 <tr data-aos="zoom-in" data-aos-delay="200">
                                     <td><i class="fab fa-reddit fa-2x text-white v-middle"></i> Reddit</td>
                                     <td>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">Lorem ipsum dolor sit...</a>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">
+                                        <a href="#" class="btn btn-secondary btn-clash-rounded">{{ Illuminate\Support\Str::limit($foro->forum_title,45) }}</a>
+                                        <a href="{{ $foro->link }}" target="_blank" class="btn btn-secondary btn-clash-rounded">
                                             <i class="bi bi-arrow-up-right-circle"></i>
                                         </a>
                                     </td>
-                                    <td><i class="bi bi-arrow-down-right text-danger"></i> 1</td>
+                                    <td><i class="bi bi-arrow-<?=($foro->state=='subio') ? 'up':'down';?>-right text-<?=($foro->state=='subio') ? 'success':'danger';?>"></i> {{ $foro->position }}</td>
                                 </tr>
-                                <tr data-aos="zoom-in" data-aos-delay="300">
-                                    <td><i class="fab fa-reddit fa-2x text-white v-middle"></i> Reddit</td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">Lorem ipsum dolor sit...</a>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">
-                                            <i class="bi bi-arrow-up-right-circle"></i>
-                                        </a>
-                                    </td>
-                                    <td><i class="bi bi-arrow-up-right text-success"></i> 2</td>
+                                @empty
+                                <tr data-aos="zoom-in" data-aos-delay="200">
+                                    <td>Esta sección no tiene registros</td>
                                 </tr>
-                                <tr data-aos="zoom-in" data-aos-delay="400">
-                                    <td><i class="fab fa-reddit fa-2x text-white v-middle"></i> Reddit</td>
-                                    <td>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">Lorem ipsum dolor sit...</a>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">
-                                            <i class="bi bi-arrow-up-right-circle"></i>
-                                        </a>
-                                    </td>
-                                    <td><i class="bi bi-arrow-up-right text-success"></i> 2</td>
-                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -330,7 +316,7 @@
     <div class="modal fade" id="city_news" aria-hidden="true" aria-labelledby="" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content transparent text-white">
-                    <h2 class="text-center my-2">Publicaciones desde <div class="location-feed">cargardo...</div></h2>
+                    <h2 class="text-center my-2">Publicaciones de <div class="location-feed">cargardo...</div></h2>
                     <div class="container">
                         <div class="row justify-content-center map-news-container">
                             

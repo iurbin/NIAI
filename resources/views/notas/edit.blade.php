@@ -145,7 +145,7 @@
 
             <div class="card">
                 @php
-                $stats = $nota->stats;
+                $stats = $nota->stats()->where('item_type','nota_data')->get();
                 
                 @endphp
                 <ul id="estadisticas-container" class="list-group table-stripped">

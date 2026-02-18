@@ -1,8 +1,5 @@
 $(document).ready(function() {
-    //#estadisticas-container 
-    //.btn-delete-stat
-    //#btn-add-stat
-    //stat_title,stat_value,stat_comparative
+    //ESTADISTICAS PARA NOTAS Y FOROS
 
     $('#btn-add-stat').on('click',function(e){
         stat_title = $('#stat_title').val();
@@ -33,7 +30,9 @@ $(document).ready(function() {
     });
     $('#estadisticas-container').on('click','.btn-delete-stat',function(e){
         var deleteID = $(this).data('id');
-        $('.items-to-delete-container').append('<input type="hidden" name="items_to_delete[]" value="'+deleteID+'" />')
+        if(deleteID){
+            $('.items-to-delete-container').append('<input type="hidden" name="items_to_delete[]" value="'+deleteID+'" />')
+        }
         $(this).parent('div').parent('.list-group-item').remove();
     });
 });

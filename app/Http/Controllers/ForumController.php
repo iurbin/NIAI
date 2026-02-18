@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
+use App\Models\Stat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Redirect; // Add this line
+use Illuminate\Support\Facades\Redirect;
 
 
 class ForumController extends Controller
@@ -46,9 +47,36 @@ class ForumController extends Controller
         // 2. Create a new instance of the model and fill it with validated data
         $post = Forum::create($validatedData);
 
+        $stat_id = $request['stat_id'];
+        $stat_title = $request['stat_title'];
+        $stat_value = $request['stat_value'];
+        $stat_comparative = $request['stat_comparative'];
+        $i = 0;
+        if($stat_title):
+            foreach ($stat_title as $stat) {
+                if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
+                    $stat = new Stat([
+                        'label' => $stat,
+                        'value' => $stat_value[$i],
+                        'increase' => $stat_comparative[$i],
+                        'item_type' => 'forum_data',
+                    ]);
+
+                    $post->stats()->save($stat);
+                endif;
+                $i++;
+            }
+        endif;
+        $items_to_delete = $request['items_to_delete'];
+        if($items_to_delete){
+            $deleted = Stat::destroy($items_to_delete);
+        }
+
+        
+
         
         // 4. Redirect the user or return a response
-        return Redirect::back();
+        return redirect()->route('forum.index');
     }
 
     /**
@@ -82,11 +110,37 @@ class ForumController extends Controller
         ]);
 
         // 2. Create a new instance of the model and fill it with validated data
-        $post = $forum->update($validatedData);
+        $forum->update($validatedData);
 
+        $stat_id = $request['stat_id'];
+        $stat_title = $request['stat_title'];
+        $stat_value = $request['stat_value'];
+        $stat_comparative = $request['stat_comparative'];
+        $i = 0;
+        if($stat_title):
+            foreach ($stat_title as $stat) {
+                if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
+                    $stat = new Stat([
+                        'label' => $stat,
+                        'value' => $stat_value[$i],
+                        'increase' => $stat_comparative[$i],
+                        'item_type' => 'forum_data',
+                    ]);
+
+                    $forum->stats()->save($stat);
+                endif;
+                $i++;
+            }
+        endif;
+        $items_to_delete = $request['items_to_delete'];
+        if($items_to_delete){
+            $deleted = Stat::destroy($items_to_delete);
+        }
         
+
+
         // 4. Redirect the user or return a response
-        return Redirect::back();
+        return redirect()->route('forum.index');
     }
 
     /**

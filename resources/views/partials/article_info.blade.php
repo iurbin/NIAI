@@ -13,8 +13,10 @@
             </div>
         </div>
     </div>
-    
-    @forelse($nota->stats as $stat)
+    <?php 
+    $stats = $nota->stats()->where('item_type','nota_data')->get();
+    ?>
+    @forelse($stats as $stat)
     <div class="col-md-3 mb-4 kpi-item">
         <div class="glass-card text-white">
             <div class="glasscard-bg">

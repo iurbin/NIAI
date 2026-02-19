@@ -272,10 +272,10 @@ section {
 
 /* Stats */
 .stat-value {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     font-weight: normal;
     font-family: 'clash';
-    line-height: 120%;
+    line-height: 100%;
 }
 .text-success-custom { color: #00ff9d; }
 .btn-clash-rounded {

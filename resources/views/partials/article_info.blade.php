@@ -24,7 +24,7 @@
                 <h5 class="clash text-center mt-2">{{ $stat->label }}</h5>
                 <div class="stat-value">
                     <!-- <span><?php /* echo ($stat->value > 1000) ? number_format($stat->value / 1000,0) . 'k':$stat->value; */ ?></span> -->
-                    <span>{{ Number::abbreviate($stat->value) }}</span>
+                    <span>{{ Number::abbreviate($stat->value,precision: 2) }}</span>
                     <!-- <span class="stat-small text-success-custom"><i class="fas fa-arrow-up"></i> <span class="counter" data-count="50">0</span>%</span> -->
                 </div>
             </div>

@@ -30,7 +30,7 @@ class HomeController extends Controller
         $notas = Nota::orderBy('id','asc')->paginate(15);
         $total_notas = $notas->count();
         $alcance_total = Stat::where('label','Alcance')->sum('value');
-        $vistas_total = Stat::where('label','Vistas')->sum('value');
+        $vistas_total = Stat::where('label','Visitas')->sum('value');
 
         //foros
         $total_comentarios = Stat::where('label','Comentarios')->where('item_type','forum_data')->sum('value');

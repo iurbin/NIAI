@@ -29,7 +29,7 @@
         }
 
         .water {
-            fill:transparent;
+            fill: rgba(0,0,0,0.3);
         }
 
         .graticule {

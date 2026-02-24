@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<form method="POST" action="{{ route('forum.store') }}">
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -10,7 +10,7 @@
                     <h2>Agregar nueva entrada de Reddit</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('forum.store') }}">
+                    
                         {{-- 1. CSRF Protection --}}
                         @csrf
 
@@ -89,7 +89,7 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Crear entrada de reddit</button>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -130,6 +130,7 @@
             <!-- STATS END -->
     </div>
 </div>
+</form>
 <!-- Button trigger modal -->
 
 

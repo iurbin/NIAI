@@ -46,15 +46,16 @@ class ForumController extends Controller
 
         // 2. Create a new instance of the model and fill it with validated data
         $post = Forum::create($validatedData);
-
+        
         $stat_id = $request['stat_id'];
         $stat_title = $request['stat_title'];
         $stat_value = $request['stat_value'];
         $stat_comparative = $request['stat_comparative'];
         $i = 0;
+        
         if($stat_title):
             foreach ($stat_title as $stat) {
-                if($stat_id[$i]=='0')://avoid duplicates when saving nota and not editing stats
+                
                     $stat = new Stat([
                         'label' => $stat,
                         'value' => $stat_value[$i],
@@ -63,18 +64,13 @@ class ForumController extends Controller
                     ]);
 
                     $post->stats()->save($stat);
-                endif;
+
+                    
+                
                 $i++;
             }
+            
         endif;
-        $items_to_delete = $request['items_to_delete'];
-        if($items_to_delete){
-            $deleted = Stat::destroy($items_to_delete);
-        }
-
-        
-
-        
         // 4. Redirect the user or return a response
         return redirect()->route('forum.index');
     }

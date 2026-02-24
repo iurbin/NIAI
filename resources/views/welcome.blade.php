@@ -2,6 +2,10 @@
 
 @section('content')
 <!-- map items -->
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <link rel="stylesheet" href="{{asset('build/assets/map/map.css')}}" type="text/css">
 <script src="{{asset('build/assets/map/d3.v7.min.js')}}"></script>
 <script src="{{asset('build/assets/map/topojson-client.min.js')}}"></script>
@@ -164,7 +168,7 @@
             </div>
             <div class="content">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-5" id="forum-stats-container">
                         <h5 class="text-white clash">Datos Generales</h5>
                         <div class="row counters">
                             <div class="col-6 p-3 kpi-item">
@@ -198,7 +202,7 @@
                         <div class="table-heading-container pb-2 mb-3" data-aos="zoom-in" style="border-bottom: 2px solid white;">
                             <h4 class="clash text-white">Más</h4>
                         </div>
-                        <div class="table-container">
+                        <div class="table-container reddit-container">
                         <table class="table table-dark table-hover mb-0 nia-table">
                             <thead>
                                 <tr data-aos="zoom-in" data-aos-delay="100">
@@ -208,11 +212,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                $counter = 1;
+                                ?>
                                 @forelse($foros as $foro)
+
+                                <?php if($counter<6): ?>
                                 <tr data-aos="zoom-in" data-aos-delay="200">
+                                <?php else: ?>
+                                <tr>
+                                <?php endif; $counter++; ?>
                                     <td><i class="fab fa-reddit fa-2x text-white v-middle"></i> Reddit</td>
                                     <td>
-                                        <a href="#" class="btn btn-secondary btn-clash-rounded">{{ Illuminate\Support\Str::limit($foro->forum_title,45) }}</a>
+                                        <a href="{{route('foro.stats')}}" data-id="{{$foro->id}}" class="btn btn-secondary btn-clash-rounded btn-foro-item">{{ Illuminate\Support\Str::limit($foro->forum_title,45) }}</a>
                                         <a href="{{ $foro->link }}" target="_blank" class="btn btn-secondary btn-clash-rounded">
                                             <i class="bi bi-arrow-up-right-circle"></i>
                                         </a>
@@ -227,14 +239,11 @@
                             </tbody>
                         </table>
                     </div>
-
-                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>
-
+<script src="{{asset('build/assets/js/forum_info_control.js')}}"></script>
     <section id="noticias">
         <div class="container">
             

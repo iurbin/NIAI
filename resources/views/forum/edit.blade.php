@@ -102,7 +102,7 @@
                 <div class="card mb-3">
                     
                         <div class="card-body">
-                            <h5>Agregar estadísticas a la nota</h5>
+                            <h5>Agregar estadísticas</h5>
                             <div class="form-block mb-3">
                                 <label for="">Título</label>
                                 <input type="text" class="form-control" name="stat_title" id="stat_title">

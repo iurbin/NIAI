@@ -360,3 +360,7 @@ section{
     background-size: cover;
     background-position: center;
 }
+.reddit-container {
+    height: 42vh;
+    overflow: auto;
+}

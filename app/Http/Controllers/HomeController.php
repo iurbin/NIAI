@@ -35,7 +35,7 @@ class HomeController extends Controller
         //foros
         $total_comentarios = Stat::where('label','Comentarios')->where('item_type','forum_data')->sum('value');
         
-        $foros = Forum::orderBy('position','asc')->paginate(5);
+        $foros = Forum::orderBy('position','asc')->get();
         $total_foros = $foros->count();
         
         return view('welcome', compact('notas', 'total_notas','alcance_total','vistas_total', 'foros', 'total_comentarios', 'total_foros'));

@@ -33,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::get('/article-info', [ApiController::class,'get_article_info'])->name('article_info');
+        Route::get('/forum-info', [ApiController::class,'get_forum_stats'])->name('foro.stats');
 });

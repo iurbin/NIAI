@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nota;
 use App\Models\Stat;
+use App\Models\Forum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,12 @@ class ApiController extends Controller
 {
     //
     
+    public function get_forum_stats(Request $request)
+    {
+        $foro = Forum::find($request['id']);
+        $stats = $foro->stats()->where('item_type','forum_data')->get();
+        return view('partials.forum-details', compact('foro','stats'));
+    }
     public function get_article_info(Request $request)
     {
         $nota = Nota::find($request['id']);

@@ -336,7 +336,7 @@
     </div>
 
     <div class="modal fade" id="article_info" aria-hidden="true" aria-labelledby="" tabindex="-1">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content transparent text-white article_info">
                 
             </div>

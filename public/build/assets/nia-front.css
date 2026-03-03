@@ -364,3 +364,10 @@ section{
     height: 42vh;
     overflow: auto;
 }
+.article-info-cover{
+    width: 100%;
+    border-radius: 50px;
+}
+.modal-backdrop.show {
+    opacity: 0.8 !important;
+}

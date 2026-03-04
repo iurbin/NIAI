@@ -13,9 +13,14 @@
                     <form method="POST" action="{{ route('notas.store') }}">
                         {{-- 1. CSRF Protection --}}
                         @csrf
-
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="switch_audio_nota"
+                            data-bs-toggle="collapse" data-bs-target=".not_audio_nota" aria-expanded="true" aria-controls="not_audio_nota"
+                            >
+                            <label class="form-check-label" for="switch_audio_nota">Audio nota</label>
+                        </div>
                         {{-- 2. Link Field --}}
-                        <div class="mb-3">
+                        <div class="mb-3 not_audio_nota show">
                             <label for="link" class="form-label"><strong>Enlace</strong></label>
                             <input
                                 type="text"
@@ -51,7 +56,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 not_audio_nota show">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -79,7 +84,7 @@
                             Cargar cover
                             </button>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 not_audio_nota show">
                             <label for="extract" class="form-label"><strong>Contenido, descripción breve</strong></label>
                             <textarea
                                 class="form-control @error('extract') is-invalid @enderror"

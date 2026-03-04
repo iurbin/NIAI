@@ -13,3 +13,6 @@ background-color: #f6f6f6;
 .list-group-item:nth-child(even) {
 background-color: #f0f0f0;
 }
+.form-switch .form-check-input {
+    border-radius: 20px !important;
+}

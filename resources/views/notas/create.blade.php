@@ -13,14 +13,16 @@
                     <form method="POST" action="{{ route('notas.store') }}">
                         {{-- 1. CSRF Protection --}}
                         @csrf
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="switch_audio_nota"
-                            data-bs-toggle="collapse" data-bs-target=".not_audio_nota" aria-expanded="true" aria-controls="not_audio_nota"
-                            >
-                            <label class="form-check-label" for="switch_audio_nota">Audio nota</label>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="audio_nota" value='audio_nota' type="checkbox" role="switch" id="switch_audio_nota"
+                                data-bs-toggle="collapse" data-bs-target=".not_audio_nota" aria-expanded="true" aria-controls="not_audio_nota"
+                                >
+                                <label class="form-check-label" for="switch_audio_nota">Audio nota</label>
+                            </div>
                         </div>
                         {{-- 2. Link Field --}}
-                        <div class="mb-3 not_audio_nota show">
+                        <div class="mb-3 not_audio_nota collapse show">
                             <label for="link" class="form-label"><strong>Enlace</strong></label>
                             <input
                                 type="text"
@@ -29,7 +31,7 @@
                                 name="link"
                                 value="{{ old('link') }}"
                                 placeholder="Enter a URL (e.g., https://...)"
-                                required
+                                
                             >
                             {{-- Validation Feedback --}}
                             @error('link')
@@ -56,7 +58,23 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="mb-3 not_audio_nota show">
+                        <div class="mb-3 not_audio_nota collapse">
+                            <label for="title" class="form-label"><strong>Audio URL</strong></label>
+                            <input
+                                type="text"
+                                class="form-control @error('audio_url') is-invalid @enderror"
+                                id="audio_url"
+                                name="audio_url"
+                                value="{{ old('audio_url') }}"
+                                required
+                            >
+                            @error('audio_url')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="mb-3 not_audio_nota collapse show">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -67,7 +85,7 @@
                                                 id="cover"
                                                 name="cover"
                                                 value="{{ old('cover') }}"
-                                                required
+                                                
                                             >
                                             @error('cover')
                                                 <div class="invalid-feedback">
@@ -84,14 +102,13 @@
                             Cargar cover
                             </button>
                         </div>
-                        <div class="mb-3 not_audio_nota show">
+                        <div class="mb-3 not_audio_nota collapse show">
                             <label for="extract" class="form-label"><strong>Contenido, descripción breve</strong></label>
                             <textarea
                                 class="form-control @error('extract') is-invalid @enderror"
                                 id="extract"
                                 name="extract"
                                 value="{{ old('extract') }}"
-                                required
                                 rows="5"
                             ></textarea>
                             @error('extract')

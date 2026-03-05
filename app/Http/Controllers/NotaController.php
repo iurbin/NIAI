@@ -36,18 +36,26 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'link' => 'required',
-            'title' => 'required',
-            'cover' => 'required',
-            'extract' => 'required',
-            'location' => 'required'    
-        ]);
+        
 
+        if(isset($request['audio_nota'])){
+            $validatedData['titulo'] = $request['titulo'];
+            $validatedData['type'] = $request['audio_nota'];
+            $validatedData['audio_url'] = $request['audio_url'];
+            $validatedData['location'] = $request['location'];
+        }else{
+            $validatedData = $request->validate([
+                'link' => 'required',
+                'title' => 'required',
+                'cover' => 'required',
+                'extract' => 'required',
+                'location' => 'required'    
+            ]);
+            $validatedData['type'] = 'regular_nota';
+        }
         // 2. Create a new instance of the model and fill it with validated data
         $post = Nota::create($validatedData);
 
-        
         // 4. Redirect the user or return a response
         return redirect()->route('notas.index', $post->id)
                          ->with('success', 'Publicación creada exitosamente!');

@@ -34,7 +34,10 @@
                                 @forelse ($users as $user)
                                     <tr>
                                         <th scope="row">{{ $user->id }}</th>
-                                        <td>{{ $user->name }}</td>
+                                        <td>
+                                            {{ $user->name }}<br>
+                                            <span class="text-muted">{{$user->username}}</span>
+                                        </td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->created_at->format('M d, Y') }}</td>
                                         <td>

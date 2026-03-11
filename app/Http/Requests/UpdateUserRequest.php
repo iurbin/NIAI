@@ -35,6 +35,7 @@ class UpdateUserRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user->id) // Ignore current user's email
             ],
+            'username' => 'required|string|max:255|unique:users',
             'password' => ['nullable', Password::min(8)], // 'nullable' means it's optional on update
         ];
     }

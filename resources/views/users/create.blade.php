@@ -49,6 +49,23 @@
                                 </div>
                             @enderror
                         </div>
+                        {{-- 3.5 Username --}}
+                        <div class="mb-3">
+                            <label for="username" class="form-label"><strong>Username</strong></label>
+                            <input
+                                type="username"
+                                class="form-control @error('username') is-invalid @enderror"
+                                id="username"
+                                name="username"
+                                value="{{ old('username') }}"
+                                required
+                            >
+                            @error('username')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         {{-- 3. Role Field --}}
                         <div class="mb-3">
                             <label for="role" class="form-label"><strong>Role</strong></label>

@@ -30,10 +30,11 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $validatedData = $request->validated();
-
+        
         $newuser = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
+            'username' => $validatedData['username'],
             'password' => Hash::make($validatedData['password']), // <-- ALWAYS hash passwords
         ]);
 
@@ -57,11 +58,8 @@ class UserController extends Controller
     }
     public function update(UpdateUserRequest $request, User $user)
     {
-        
-        
         // Validation already passed!
         $validatedData = $request->validated();
-
         $user->update($validatedData);
         $user->syncRoles([]);
         $user->assignRole($request['role']);

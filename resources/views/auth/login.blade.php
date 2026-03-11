@@ -11,9 +11,9 @@
                 <div class="card-body">
                         @csrf
                         <div class="form-floating mb-3">
-                                <input id="email" type="email" placeholder="name@example.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                <label for="email">{{ __('Email Address') }}</label>
-                                @error('email')
+                                <input id="username" type="username" placeholder="john.doe" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+                                <label for="username">{{ __('Usuario') }}</label>
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,7 +53,7 @@
                         <div class="forgot-block text-light mt-5 text-center">
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link text-light" href="{{ route('password.request') }}">
-                                    <small>{{ __('Forgot Your Password?') }}</small>
+                                    <small>{{ __('Reestablecer clave?') }}</small>
                                 </a>
                             @endif
                         </div>

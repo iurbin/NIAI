@@ -37,9 +37,10 @@ class NotaController extends Controller
     public function store(Request $request)
     {
         
+        $validatedData = [];
 
         if(isset($request['audio_nota'])){
-            $validatedData['titulo'] = $request['titulo'];
+            $validatedData['title'] = $request['title'];
             $validatedData['type'] = $request['audio_nota'];
             $validatedData['audio_url'] = $request['audio_url'];
             $validatedData['location'] = $request['location'];

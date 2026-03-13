@@ -34,8 +34,17 @@ container = document.getElementById('globe-container');
         .attr("height", height);
 
     // --- 3. PROJECTION ---
+    var scale = 175; //for mobile
+    var isMobile = true;
+    if(window.innerWidth > 1024 ){ 
+        scale = 300;
+        isMobile = false;
+    }else if(window.innerWidth > 768){
+        scale = 250;
+        isMobile = false;
+    }
     const projection = d3.geoOrthographic()
-        .scale(300)
+        .scale(scale)
         .center([0, 0])
         .rotate([40, -15])
         .translate([width / 2, height / 2]);
@@ -54,19 +63,10 @@ container = document.getElementById('globe-container');
             path.projection(projection);
             mapGroup.selectAll("path").attr("d", path);
 
-            // Update City Markers (if any exist)
-            // Logic: We calculate screen x/y from lat/long
-            // If the city is on the back of the globe, we hide it.
             markerGroup.selectAll(".city-marker")
                 .attr("cx", d => projection(d.coords)[0])
                 .attr("cy", d => projection(d.coords)[1])
                 .style("display", d => {
-                    // d3.geoCircle logic to check visibility is complex.
-                    // Simple hack: Check the distance from the center of the projection.
-                    // If distance is > projection radius, it's behind the globe.
-                    // However, standard d3 projection returns null if clipped? 
-                    // Let's use the 'd' generator for points or simple coordinate check:
-                    
                     const coordinate = d.coords;
                     const gdistance = d3.geoDistance(coordinate, projection.invert([width/2, height/2]));
                     return (gdistance > 1.57) ? 'none' : 'inline'; // 1.57 radians is approx 90 degrees

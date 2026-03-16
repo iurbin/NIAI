@@ -359,6 +359,8 @@ section{
     position: absolute;
     background-size: cover;
     background-position: center;
+    width: 100%;
+    height: 20vh;
 }
 .reddit-container {
     height: 42vh;
@@ -370,4 +372,17 @@ section{
 }
 .modal-backdrop.show {
     opacity: 0.8 !important;
+}
+img.nota-picture {
+    width: 100%;
+}
+/* tablets and up */
+@media (min-width: 768px) {
+    
+}
+/* DESKTOPS */
+@media (min-width: 1024px) {
+    #globe-container {
+         height: 80vh;
+    }
 }

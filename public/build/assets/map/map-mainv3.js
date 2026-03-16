@@ -2,7 +2,8 @@ container = document.getElementById('globe-container');
 // --- 1. CONFIG & DATA ---
     const width = container.offsetWidth;
     const height = container.offsetHeight;
-    const sensitivity = 110;
+    var sensitivity = 50;
+    var ZommClickedScale = 400;
     let rotationTimer;
     let activeCountry = null; // Track which country is focused
 
@@ -38,9 +39,13 @@ container = document.getElementById('globe-container');
     var isMobile = true;
     if(window.innerWidth > 1024 ){ 
         scale = 300;
+        sensitivity = 110;
+        ZommClickedScale = 900;
         isMobile = false;
     }else if(window.innerWidth > 768){
         scale = 250;
+        ZommClickedScale = 900;
+        sensitivity = 110;
         isMobile = false;
     }
     const projection = d3.geoOrthographic()
@@ -71,15 +76,6 @@ container = document.getElementById('globe-container');
                     const gdistance = d3.geoDistance(coordinate, projection.invert([width/2, height/2]));
                     return (gdistance > 1.57) ? 'none' : 'inline'; // 1.57 radians is approx 90 degrees
                 });
-
-            markerGroup.selectAll(".city-label")
-                .attr("x", d => projection(d.coords)[0] + 8)
-                .attr("y", d => projection(d.coords)[1] + 4)
-                .style("display", d => {
-                     const coordinate = d.coords;
-                     const gdistance = d3.geoDistance(coordinate, projection.invert([width/2, height/2]));
-                     return (gdistance > 1.57) ? 'none' : 'inline';
-                }); 
             
             addMarkers(citiesData);
         }
@@ -115,16 +111,7 @@ container = document.getElementById('globe-container');
                     
                 });
 
-            // Add Text
-            /* markerGroup.selectAll("text")
-                .data(cities)
-                .enter().append("text")
-                .attr("class", "city-label")
-                .text(d => d.name)
-                .attr("x", d => projection(d.coords)[0] + 15)
-                .attr("y", d => projection(d.coords)[1] + 4)
-                .transition().duration(500)
-                .style("opacity", 1); */ // Fade in
+            
         }
     // --- 4. LAYERS (Order matters!) ---
     function startRotation() {
@@ -239,7 +226,9 @@ container = document.getElementById('globe-container');
         // --- 6. ANIMATION LOOP ---
         
 
-        startRotation();
+        
+            startRotation();
+        
 
         
 
@@ -268,7 +257,7 @@ container = document.getElementById('globe-container');
             // Setup Transition
             const centroid = d3.geoCentroid(d);
             const r = d3.interpolate(projection.rotate(), [-centroid[0], -centroid[1]]);
-            const s = d3.interpolate(projection.scale(), 900);
+            const s = d3.interpolate(projection.scale(), ZommClickedScale);
 
             // Clear existing markers immediately so they don't float during zoom
             markerGroup.selectAll("*").remove();

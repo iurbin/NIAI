@@ -1,11 +1,11 @@
 @forelse($notas as $nota)
-<div class="col-md-6 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="200">
+<div class="col-12 col-md-6 mb-4 kpi-item " data-aos="zoom-in" data-aos-delay="200">
     <div class="card mb-3 custom-card" style="border:0 none;">
         <div class="row g-0">
-            <div class="col-md-4 h-100 nota-cover" style="background-image: url('{{$nota->cover}}')">
-                
+            <div class="col-12 col-md-4">
+                <img src="{{$nota->cover}}" class="nota-picture" />
             </div>
-            <div class="col-md-8 offset-md-4">
+            <div class="col-12 col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{ Illuminate\Support\Str::limit($nota->title, 55) }}</h5>
                     

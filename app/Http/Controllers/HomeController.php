@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $notas = Nota::orderBy('id','asc')->paginate(15);
+        $notas = Nota::orderBy('id','desc')->get();
         $total_notas = $notas->count();
         $alcance_total = Stat::where('label','Alcance')->sum('value');
         $vistas_total = Stat::where('label','Visitas')->sum('value');

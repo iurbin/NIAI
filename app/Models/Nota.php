@@ -9,7 +9,7 @@ class Nota extends Model
 {
     //
     protected $fillable = [
-        'link', 'title', 'cover', 'extract', 'location'
+        'link', 'title', 'cover', 'extract', 'location', 'audio_url', 'type'
     ];
     public function stats(): HasMany
     {

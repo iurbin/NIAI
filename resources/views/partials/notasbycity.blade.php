@@ -11,7 +11,11 @@
                     
                     <p class="card-text"><small class="">{{ $nota->location }}</small></p>
                     <div class="d-flex justify-content-end">
-                        <a class="btn btn-primary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver nota</a>
+                        @if($nota->type=='audio_nota')                                      
+                        <a class="btn btn-secondary btn-small btn-clash-rounded btn-article-info" data-id="{{$nota->id}}" href="{{ route('article_info') }}">Ver nota</a>
+                        @else
+                        <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver nota</a>
+                        @endif
                     </div>
                 </div>
             </div>

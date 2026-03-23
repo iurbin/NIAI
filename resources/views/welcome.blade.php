@@ -282,7 +282,12 @@
                                                                     <small class="clash">{{ $nota->location }}</small>
                                                                     <br>
                                                                     <br>
+                                                                    @if($nota->type=='audio_nota')
+                                                                    
+                                                                    <a class="btn btn-secondary btn-small btn-clash-rounded btn-article-info" data-id="{{$nota->id}}" href="{{ route('article_info') }}">Ver nota</a>
+                                                                    @else
                                                                     <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver más</a>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -12,7 +12,7 @@
                     <p class="card-text"><small class="">{{ $nota->location }}</small></p>
                     <div class="d-flex justify-content-end">
                         @if($nota->type=='audio_nota')                                      
-                        <a class="btn btn-secondary btn-small btn-clash-rounded btn-article-info" data-id="{{$nota->id}}" href="{{ route('article_info') }}">Ver nota</a>
+                        <a class="btn btn-secondary btn-small btn-clash-rounded btn-article-audionota" data-bs-toggle="modal" data-id="{{$nota->id}}" href="{{ route('article_info') }}">Ver nota</a>
                         @else
                         <a class="btn btn-secondary btn-small btn-clash-rounded" href="{{ $nota->link }}" target="_blank">Ver nota</a>
                         @endif
@@ -25,3 +25,23 @@
 @empty
 <h3>No se encontraron notas en esta ciudad.</h3>
 @endforelse
+
+<script>
+    $(document).ready(function(){
+        $('.btn-article-audionota').on('click', function(e){
+            e.preventDefault();
+            id = $(this).data('id');
+            url = $(this).attr('href');
+
+            $.ajax({
+                url: url + '?id='+id, // URL to the resource
+                success: function(result){
+
+                    $('#article_info').modal('show');
+                    $(".article_info").html(result);
+                    
+                }
+            });
+        });
+    });
+</script>
